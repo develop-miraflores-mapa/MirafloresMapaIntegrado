@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 				http://www.springframework.org/schema/context/spring-context.xsd">			
+
+	<bean id="dataSourceSMM" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="com.ibm.as400.access.AS400JDBCDriver" />
+   		<property name="url" value="jdbc:as400://10.0.1.118/SMM" />
+		<property name="username" value="USERSMM" />
+		<property name="password" value="MUNISMM11" />
+    </bean>
+	
+ 	<!--sqlSessionFactory -->
+ 	<bean id="sqlSessionFactorySMM" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSourceSMM" />  
+        <property name="configLocation" value="classpath:mybatis-config.xml" />  
+    </bean>
+	
+	<!-- scan for mappers and will automatically scan the whole classpath for xmls -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <property name="sqlSessionFactory" ref="sqlSessionFactorySMM" />
+	    <property name="basePackage" value="pe.gob.miraflores.**.dao.**" />
+	</bean>
+    
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceSMM"/>
+	</bean>	 
+	
+	
+	<!-- Catastro -->
+	<bean id="dataSourceCatastro" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<property name="driverClassName" value="org.postgresql.Driver" />
+   		<property name="url" value="jdbc:postgresql://10.0.1.74:5432/catastro" />
+		<property name="username" value="consulta" />
+		<property name="password" value="consult@" />
+    </bean>
+    
+    <!--sqlSessionFactory -->
+ 	<bean id="sqlSessionFactoryCatastro" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSourceCatastro" />  
+        <property name="configLocation" value="classpath:catastro-config.xml" />  
+    </bean>
+	
+	<!-- scan for mappers and will automatically scan the whole classpath for xmls -->
+	<bean id="MapperScannerConfigurer2" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	    <property name="sqlSessionFactory" ref="sqlSessionFactoryCatastro" />
+	    <property name="basePackage" value="pe.gob.miraflores.mobile.dao.catastro.*" />
+	</bean>
+	   
+	   
+</beans>

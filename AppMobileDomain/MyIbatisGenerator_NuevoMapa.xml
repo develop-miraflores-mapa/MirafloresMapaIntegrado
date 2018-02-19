@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry  location="E:\\Installers\\sqlSquirre\\lib\\postgresql-9.1-901.jdbc4.jar"/>
+  
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="hierarchical"  >
+  <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
+      <property name="searchString" value="Example$"/>
+      <property name="replaceString" value="Criteria"/>
+    </plugin>
+   <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+   <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> 
+    
+  <!-- No generamos los comentarios -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="false"/>
+    </commentGenerator>
+      <!--  Parámetros de conexión a la bd -->
+    <!-- 
+    <jdbcConnection driverClass="com.ibm.as400.access.AS400JDBCDriver" connectionURL="jdbc:as400://10.0.1.118/SMM"
+        userId="USERSMM" password="MUNISMM11">
+    </jdbcConnection>
+     -->
+     <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://10.0.1.147:5432/postgres"
+        userId="postgres" password="P0stgr3s...UBU...des$$">
+    </jdbcConnection>
+    
+    <!-- <javaModelGenerator targetPackage="pe.gob.miraflores.mobile.mapaincidencias.domain" targetProject="AppMobileDomain\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaModelGenerator>   -->
+    
+     <sqlMapGenerator targetPackage="pe.gob.miraflores.mobile.mapaincidencias.dao.sqlmap"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </sqlMapGenerator>
+      
+     <!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->  
+    <javaClientGenerator type="XMLMAPPER" targetPackage="pe.gob.miraflores.mobile.mapaincidencias.dao"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaClientGenerator>  
+ 	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
+   	        
+   <!-- Mapeo de Tablas START-->
+   
+	  <!-- 
+	 <table  tableName="unidad" domainObjectName="Unidad" schema="mapa" modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+     </table> 
+      
+	 <table tableName="caso" domainObjectName="Caso" schema="mapa" modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+     </table>
+    
+     <table tableName="conductor" domainObjectName="Conductor" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+      
+      <table  tableName="geometria" domainObjectName="Geometria" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+       -->
+      <table  tableName="incidencia" domainObjectName="Incidencia" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+<!-- 
+      <table  tableName="interviniente" domainObjectName="Interviniente" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+      
+      <table  tableName="involucrado" domainObjectName="Involucrado" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+
+      <table  tableName="maestro_tipo" domainObjectName="MaestroTipo" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+          
+      <table  tableName="subcaso" domainObjectName="SubCaso" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+      
+	  <table  tableName="vehiculo" domainObjectName="Vehiculo" schema="mapa"  modelType="flat" >
+        <property name="useActualColumnNames" value="false"/>
+        <property name="constructorBased" value="false"/>
+      </table>
+     -->
+     <!-- Mapeo de Tablas END -->        
+  </context>
+</generatorConfiguration>

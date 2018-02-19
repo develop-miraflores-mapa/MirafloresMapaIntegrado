@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+			<setting name="logImpl" value="LOG4J"/>
+				<setting name="cacheEnabled" value="true"/>
+                 <setting name="localCacheScope" value="SESSION"/>
+	</settings>
+	
+	<typeAliases>
+		
+		<typeAlias type="pe.gob.miraflores.mobile.domain.seguridad.UsuarioLogin" alias="UsuarioLogin" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.seguridad.UsuarioOpcion" alias="UsuarioOpcion" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.seguridad.Opcion" alias="Opcion" />
+	<!-- 
+		<typeAlias type="pe.gob.miraflores.mobile.domain.auditoriapeatonal.AuditoriaPeatonal" alias="AuditoriaPeatonal" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.parametrosistema.ParametroSistema" alias="ParametroSistema" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.catalogo.Catalogo" alias="Catalogo" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.catalogo.GrupoCatalogo" alias="GrupoCatalogo" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.detalleincidencia.GeoDetalleIncidencia" alias="GeoDetalleIncidencia" />
+		
+		<typeAlias type="pe.gob.miraflores.mobile.domain.infovigilante.GeoInfoVigilante" alias="GeoInfoVigilante" />
+		
+		<typeAlias type="pe.gob.miraflores.mobile.domain.auditoriapeatonal.AuditoriaPeatonal" alias="AuditoriaPeatonal" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciasGeometria" alias="MapaIncidenciasGeometria" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciasRegistro" alias="MapaIncidenciasRegistro" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciaSchedule" alias="MapaIncidenciaSchedule" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.GeometriaLinea" alias="GeometriaLinea" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.parametrosistema.ParametroSistema" alias="ParametroSistema" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.catalogo.Catalogo" alias="Catalogo" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.catalogo.GrupoCatalogo" alias="GrupoCatalogo" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.detalleincidencia.GeoDetalleIncidencia" alias="GeoDetalleIncidencia" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.seguridad.UsuarioLogin" alias="UsuarioLogin" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.seguridad.UsuarioOpcion" alias="UsuarioOpcion" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.seguridad.Opcion" alias="Opcion" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.infovigilante.GeoInfoVigilante" alias="GeoInfoVigilante" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.GeoInfoCambista" alias="GeoInfoCambista" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciaGenerico" alias="MapaIncidenciaGenerico" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.PreInscripcionCierreCalle" alias="PreInscripcionCierreCalle" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.AuditoriaIncidencia" alias="AuditoriaIncidencia" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.Unidad" alias="Unidad" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.Caso" alias="Caso" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.SubCaso" alias="SubCaso" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MaestroTipo" alias="MaestroTipo" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaInterviniente" alias="MapaInterviniente" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaInvolucrado" alias="MapaInvolucrado" />
+		
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciasGeometria" alias="MapaIncidenciasGeometria" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciasRegistro" alias="MapaIncidenciasRegistro" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciaSchedule" alias="MapaIncidenciaSchedule" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.GeometriaLinea" alias="GeometriaLinea" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.GeoInfoCambista" alias="GeoInfoCambista" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaIncidenciaGenerico" alias="MapaIncidenciaGenerico" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.PreInscripcionCierreCalle" alias="PreInscripcionCierreCalle" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.AuditoriaIncidencia" alias="AuditoriaIncidencia" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaInterviniente" alias="MapaInterviniente" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.MapaInvolucrado" alias="MapaInvolucrado" />
+ 	 -->
+	</typeAliases>
+	
+	<mappers>
+	
+		<mapper resource="pe/gob/miraflores/mobile/dao/seguridad/sqlmap/UsuarioLoginMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/seguridad/sqlmap/UsuarioOpcionMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/seguridad/sqlmap/OpcionMapper.xml" />
+	<!-- 	
+	 	<mapper resource="pe/gob/miraflores/mobile/dao/auditoriapeatonal/sqlmap/AuditoriaPeatonalMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/parametrosistema/sqlmap/ParametroSistemaMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/catalogo/sqlmap/CatalogoMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/catalogo/sqlmap/GrupoCatalogoMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/detalleincidencia/sqlmap/GeoDetalleIncidenciaMapper.xml" />
+		
+		<mapper resource="pe/gob/miraflores/mobile/dao/infovigilante/sqlmap/GeoInfoVigilanteMapper.xml" />
+		
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/MapaIncidenciasGeometriaMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/MapaIncidenciasRegistroMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/MapaIncidenciaScheduleMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/GeometriaLineaMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/GeoInfoCambistaMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/MapaIncidenciaGenericoMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/PreInscripcionCierreCalleMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/AuditoriaIncidenciaMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/MapaIntervinienteMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/MapaInvolucradoMapper.xml" />
+	 -->	
+	</mappers>
+	
+</configuration>
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop 					http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context 				http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 					http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:component-scan base-package="pe.gob.miraflores.mobile.service" />
+	
+	
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="obtener*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="validar*" read-only="true" />
+			<tx:method name="buscar*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="build*" read-only="true" />
+			<tx:method name="envia*" read-only="true" />
+			<tx:method name="exporta*" read-only="true" />
+			<tx:method name="autentica*" read-only="true" />
+			<tx:method name="*" rollback-for="Throwable" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	
+	
+	
+	 <tx:advice id="txAdviceHist" transaction-manager="transactionManagerHistorico">
+		<tx:attributes>
+			<tx:method name="obtener*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="validar*" read-only="true" />
+			<tx:method name="buscar*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="build*" read-only="true" />
+			<tx:method name="envia*" read-only="true" />
+			<tx:method name="exporta*" read-only="true" />
+			<tx:method name="autentica*" read-only="true" />
+			<tx:method name="*" rollback-for="Throwable" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice> 
+	
+	
+	<bean id="log4jInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+	       <property name="targetClass"  value="org.springframework.util.Log4jConfigurer" />
+	       <property name="targetMethod" value="initLogging" />        
+	       <property name="arguments">         
+	       <list>
+	               <value>/home/log/miraflores-security.config</value>
+	       </list>
+	       </property>
+       
+       </bean>
+
+	<aop:config>
+		<aop:pointcut id="txManagerMethods" expression="execution(public * pe.gob.miraflores.mobile.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txManagerMethods" />
+		 <aop:advisor advice-ref="txAdviceHist" pointcut-ref="txManagerMethods" /> 
+		
+	</aop:config>
+</beans>

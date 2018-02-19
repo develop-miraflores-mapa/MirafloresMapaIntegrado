@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- <bean id="dataSourceSMM" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close" > <property name="driverClassName" value="com.ibm.as400.access.AS400JDBCDriver" 
+		/> <property name="url" value="jdbc:as400://10.0.1.118/SMM" /> <property 
+		name="username" value="USERSMM" /> <property name="password" value="MUNISMM111" 
+		/> </bean> -->
+
+
+	<!-- ******************************** CONEXIONES ******************************** -->
+	
+	<!-- ******** CONEXIONES A DESARROLLO ******** -->
+
+		<!-- DEV/LOCAL (Desde la Muni 10.0.1.223:8280 / 172.16.13.17:82) -->
+				 
+				<bean id="dataSourcePostgres" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver"/> 
+					<property name="url" value="jdbc:postgresql://10.0.1.147:5432/postgres"/> 
+					<property name="username" value="postgres" /> 
+					<property name="password" value="P0stgr3s...UBU...des$$" /> 
+				</bean> 
+				<bean id="dataSourceHistoricoDB" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://10.0.1.147:5432/HistoricoDB" /> 
+					<property name="username" value="postgres" /> 
+					<property name="password" value="P0stgr3s...UBU...des$$"/> 
+				</bean> 
+				<bean id="dataSourceCatastro" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver"/> 
+					<property name="url" value="jdbc:postgresql://10.0.1.74:5432/catastro" /> 
+					<property name="username" value="consulta" /> 
+					<property name="password" value="consult@" /> 
+				</bean>
+				
+				<!-- 
+				<bean id="dataSourceWaze" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://10.0.1.147:5432/Waze_data"/> 
+					<property name="username" value="postgres" /> 
+					<property name="password" value="P0stgr3s...UBU...des$$" /> 
+				</bean> 
+				<bean id="dataSourceTetra" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://10.0.1.152:5432/postgres" /> 
+					<property name="username" value="postgres" /> <property name="password" value="muni**2017" /> 
+				</bean>
+				 -->
+
+
+		<!-- MONITOR QA (Desde la Muni 10.0.1.223:8280 / 172.16.13.17:82) -->
+				<!--  
+				<bean id="dataSourcePostgres" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://172.18.40.241:5432/postgres" /> 
+					<property name="username" value="postgres" /> 
+					<property name="password" value="M1r4##17.Post204" /> 
+				</bean> 
+				<bean id="dataSourceHistoricoDB" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://172.18.40.241:5432/HistoricoDB" /> 
+					<property name="username" value="postgres" /> 
+					<property name="password" value="M1r4##17.Post204" /> 
+				</bean> 
+				<bean id="dataSourceCatastro" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://172.18.40.241:5432/catastro" /> 
+					<property name="username" value="postgres" /> 
+					<property name="password" value="M1r4##17.Post204" /> 
+				</bean>
+			 	 -->
+				
+
+
+	<!-- ******** CONEXIONES A PRODUCCION ******** -->
+
+		<!-- CORE (Desde Seguridad Ciudadana, http://190.81.61.186:8080) -->
+				<!--   
+				<bean id="dataSourcePostgres" class="org.apache.commons.dbcp.BasicDataSource"
+					destroy-method="close">
+					<property name="driverClassName" value="org.postgresql.Driver" />
+					<property name="url" value="jdbc:postgresql://192.168.100.203:5432/postgres" />
+					<property name="username" value="postgres" />
+					<property name="password" value="M1r4##17.Post204" />
+				</bean>
+				<bean id="dataSourceHistoricoDB" class="org.apache.commons.dbcp.BasicDataSource"
+					destroy-method="close">
+					<property name="driverClassName" value="org.postgresql.Driver" />
+					<property name="url" value="jdbc:postgresql://192.168.100.203:5432/HistoricoDB" />
+					<property name="username" value="postgres" />
+					<property name="password" value="M1r4##17.Post204" />
+				</bean>
+				<bean id="dataSourceCatastro" class="org.apache.commons.dbcp.BasicDataSource"
+					destroy-method="close">
+					<property name="driverClassName" value="org.postgresql.Driver" />
+					<property name="url" value="jdbc:postgresql://192.168.100.203:5432/catastro" />
+					<property name="username" value="postgres" />
+					<property name="password" value="M1r4##17.Post204" />
+				</bean>
+				 -->
+				
+		<!-- CONTINGENCIA (Desde digital2, 10.0.1.223:8280) -->
+				<!-- 
+				<bean id="dataSourcePostgres" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://10.0.1.150:5432/postgres" /> 
+					<property name="username" value="contingencia" /> 
+					<property name="password" value="Map$$Ser12#" /> 
+				</bean> 
+				<bean id="dataSourceHistoricoDB" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://10.0.1.150:5432/HistoricoDB" /> 
+					<property name="username" value="contingencia" /> 
+					<property name="password" value="Map$$Ser12#" /> 
+				</bean> 
+				<bean id="dataSourceCatastro" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" > 
+					<property name="driverClassName" value="org.postgresql.Driver" /> 
+					<property name="url" value="jdbc:postgresql://10.0.1.150:5432/catastro" /> 
+					<property name="username" value="contingencia" /> 
+					<property name="password" value="Map$$Ser12#" /> 
+				</bean>
+				 -->
+				
+				
+				
+
+	<!-- ******************************** SESIONES ******************************** -->
+
+		<!-- /* SQLSESSION POSTGRES */ -->
+		
+				<bean id="sqlSessionPostgres" class="org.mybatis.spring.SqlSessionFactoryBean">
+					<property name="dataSource" ref="dataSourcePostgres" />
+					<property name="configLocation" value="classpath:mybatis-postgresconfig.xml" />
+				</bean>
+			
+				<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+					<property name="sqlSessionFactory" ref="sqlSessionPostgres" />
+					<!-- <property name="basePackage" value="pe.gob.miraflores.mobile.mapaincidencias.dao.**"/> -->
+					<property name="basePackage" value="pe.gob.miraflores.mobile.dao.**" />
+				</bean>
+			
+				<bean id="transactionManager"
+					class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+					<property name="dataSource" ref="dataSourcePostgres" />
+				</bean>
+	
+	
+		<!-- /* SQLSESSION HISTORICODB */ -->
+		
+				<bean id="sqlSessionHistoricoDB" class="org.mybatis.spring.SqlSessionFactoryBean">
+					<property name="dataSource" ref="dataSourceHistoricoDB" />
+					<property name="configLocation" value="classpath:mybatis-historicoconfig.xml" />
+				</bean>
+			
+				<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+					<property name="sqlSessionFactory" ref="sqlSessionHistoricoDB" />
+					<!-- <property name="basePackage" value="pe.gob.miraflores.mobile.mapaincidencias.dao.**"/> -->
+					<property name="basePackage" value="pe.gob.miraflores.mobile.historico.dao.**" />
+				</bean>
+			
+				<bean id="transactionManagerHistorico"
+					class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+					<property name="dataSource" ref="dataSourceHistoricoDB" />
+				</bean>
+	
+	
+		<!-- /* SQLSESSION CATASTRO */ -->
+		
+				<bean id="sqlSessionCatastro" class="org.mybatis.spring.SqlSessionFactoryBean">
+					<property name="dataSource" ref="dataSourceCatastro" />
+					<property name="configLocation" value="classpath:catastro-config.xml" />
+				</bean>
+				<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+					<property name="sqlSessionFactory" ref="sqlSessionCatastro" />
+					<property name="basePackage" value="pe.gob.miraflores.mobile.catastro.dao.**" />
+				</bean>
+				
+				
+		<!-- /* SQLSESSION WAZE */ --> 
+				<!-- 
+				<bean id="sqlSessionWaze" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+					<property name="dataSource" ref="dataSourceWaze" /> 
+					<property name="configLocation" value="classpath:waze-config.xml" /> 
+				</bean> <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
+					<property name="sqlSessionFactory" ref="sqlSessionWaze"/> 
+					<property name="basePackage" value="pe.gob.miraflores.mobile.waze.dao.**"/> 
+				</bean> 
+				 -->
+				 
+		<!-- /* SQLSESSION TETRA */ --> 
+				<!-- 
+				<bean id="sqlSessionTetra" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+					<property name="dataSource" ref="dataSourceTetra" /> 
+					<property name="configLocation" value="classpath:tetra-config.xml" /> 
+				</bean> 
+				<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
+					<property name="sqlSessionFactory" ref="sqlSessionTetra"/> 
+					<property name="basePackage" value="pe.gob.miraflores.mobile.tetra.dao.**"/> 
+				</bean>
+				 -->
+
+
+	<context:component-scan base-package="pe.gob.miraflores.mobile.*" />
+
+</beans>
+
+

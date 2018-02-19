@@ -1,0 +1,1097 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.miraflores.mobile.historico.dao.HistoricoIncidenciaMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidencia">
+    <id column="id_hist" jdbcType="INTEGER" property="idHist" />
+    <result column="id_incidencia" jdbcType="INTEGER" property="idIncidencia" />
+    <result column="cod_unidad" jdbcType="INTEGER" property="codUnidad" />
+    <result column="cod_caso" jdbcType="INTEGER" property="codCaso" />
+    <result column="cod_subcaso" jdbcType="INTEGER" property="codSubcaso" />
+    <result column="cod_medio" jdbcType="INTEGER" property="codMedio" />
+    <result column="cod_situacion" jdbcType="INTEGER" property="codSituacion" />
+    <result column="desc_unidad" jdbcType="VARCHAR" property="descUnidad" />
+    <result column="desc_caso" jdbcType="VARCHAR" property="descCaso" />
+    <result column="desc_subcaso" jdbcType="VARCHAR" property="descSubcaso" />
+    <result column="desc_medio" jdbcType="VARCHAR" property="descMedio" />
+    <result column="desc_situacion" jdbcType="VARCHAR" property="descSituacion" />
+    <result column="cod_unid_report" jdbcType="INTEGER" property="codUnidReport" />
+    <result column="nomb_report" jdbcType="VARCHAR" property="nombReport" />
+    <result column="telf_report" jdbcType="VARCHAR" property="telfReport" />
+    <result column="dir_report" jdbcType="VARCHAR" property="dirReport" />
+    <result column="cext_report" jdbcType="VARCHAR" property="cextReport" />
+    <result column="cod_nac_report" jdbcType="INTEGER" property="codNacReport" />
+    <result column="cod_geometria" jdbcType="INTEGER" property="codGeometria" />
+    <result column="coordenadas" jdbcType="VARCHAR" property="coordenadas" />
+    <result column="cod_tpo_via" jdbcType="INTEGER" property="codTpoVia" />
+    <result column="desc_tpo_via" jdbcType="VARCHAR" property="descTpoVia" />
+    <result column="desc_via" jdbcType="VARCHAR" property="descVia" />
+    <result column="cdra" jdbcType="VARCHAR" property="cdra" />
+    <result column="dpto" jdbcType="VARCHAR" property="dpto" />
+    <result column="zona" jdbcType="VARCHAR" property="zona" />
+    <result column="subzona" jdbcType="VARCHAR" property="subzona" />
+    <result column="descripcion" jdbcType="VARCHAR" property="descripcion" />
+    <result column="fec_notificacion" jdbcType="TIMESTAMP" property="fecNotificacion" />
+    <result column="fec_evento" jdbcType="TIMESTAMP" property="fecEvento" />
+    <result column="fec_atencion" jdbcType="TIMESTAMP" property="fecAtencion" />
+    <result column="fec_cierre" jdbcType="TIMESTAMP" property="fecCierre" />
+    <result column="cod_severidad" jdbcType="INTEGER" property="codSeveridad" />
+    <result column="cod_estado" jdbcType="INTEGER" property="codEstado" />
+    <result column="cod_subestado" jdbcType="INTEGER" property="codSubestado" />
+    <result column="cod_modalidad" jdbcType="INTEGER" property="codModalidad" />
+    <result column="cod_motivo" jdbcType="INTEGER" property="codMotivo" />
+    <result column="desc_motivo" jdbcType="VARCHAR" property="descMotivo" />
+    <result column="tpo_hallazgo" jdbcType="VARCHAR" property="tpoHallazgo" />
+    <result column="tpo_sexo" jdbcType="VARCHAR" property="tpoSexo" />
+    <result column="est_reg" jdbcType="VARCHAR" property="estReg" />
+    <result column="nro_caso_voxiva" jdbcType="INTEGER" property="nroCasoVoxiva" />
+    <result column="tipo_voxiva" jdbcType="VARCHAR" property="tipoVoxiva" />
+    <result column="subtipo_voxiva" jdbcType="VARCHAR" property="subtipoVoxiva" />
+    <result column="tiempo_cierre" jdbcType="VARCHAR" property="tiempoCierre" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="cod_disp_origen" jdbcType="INTEGER" property="codDispOrigen" />
+    <result column="desc_disp_origen" jdbcType="VARCHAR" property="descDispOrigen" />
+    <result column="flg_heridos" jdbcType="VARCHAR" property="flgHeridos" />
+    <result column="flg_callback" jdbcType="VARCHAR" property="flgCallback" />
+    <result column="visible" jdbcType="VARCHAR" property="visible" />
+    <result column="usr_registra" jdbcType="VARCHAR" property="usrRegistra" />
+    <result column="usr_modifica" jdbcType="VARCHAR" property="usrModifica" />
+    <result column="ind_leido" jdbcType="VARCHAR" property="indLeido" />
+    <result column="tpo_operador" jdbcType="INTEGER" property="tpoOperador" />
+    <result column="flg_reasignado" jdbcType="VARCHAR" property="flgReasignado" />
+    <result column="url_audio" jdbcType="VARCHAR" property="urlAudio" />
+    <result column="aux1" jdbcType="VARCHAR" property="aux1" />
+    <result column="aux2" jdbcType="VARCHAR" property="aux2" />
+    <result column="aux3" jdbcType="VARCHAR" property="aux3" />
+    <result column="aux4" jdbcType="VARCHAR" property="aux4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_hist, id_incidencia, cod_unidad, cod_caso, cod_subcaso, cod_medio, cod_situacion, 
+    desc_unidad, desc_caso, desc_subcaso, desc_medio, desc_situacion, cod_unid_report, 
+    nomb_report, telf_report, dir_report, cext_report, cod_nac_report, cod_geometria, 
+    coordenadas, cod_tpo_via, desc_tpo_via, desc_via, cdra, dpto, zona, subzona, descripcion, 
+    fec_notificacion, fec_evento, fec_atencion, fec_cierre, cod_severidad, cod_estado, 
+    cod_subestado, cod_modalidad, cod_motivo, desc_motivo, tpo_hallazgo, tpo_sexo, est_reg, 
+    nro_caso_voxiva, tipo_voxiva, subtipo_voxiva, tiempo_cierre, area, cod_disp_origen, 
+    desc_disp_origen, flg_heridos, flg_callback, visible, usr_registra, usr_modifica, 
+    ind_leido, tpo_operador, flg_reasignado, url_audio, aux1, aux2, aux3, aux4
+  </sql>
+  <select id="selectByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidenciaCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from histomapa.hist_incidencia
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from histomapa.hist_incidencia
+    where id_hist = #{idHist,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from histomapa.hist_incidencia
+    where id_hist = #{idHist,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidenciaCriteria">
+    delete from histomapa.hist_incidencia
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidencia">
+    insert into histomapa.hist_incidencia (id_hist, id_incidencia, cod_unidad, 
+      cod_caso, cod_subcaso, cod_medio, 
+      cod_situacion, desc_unidad, desc_caso, 
+      desc_subcaso, desc_medio, desc_situacion, 
+      cod_unid_report, nomb_report, telf_report, 
+      dir_report, cext_report, cod_nac_report, 
+      cod_geometria, coordenadas, cod_tpo_via, 
+      desc_tpo_via, desc_via, cdra, 
+      dpto, zona, subzona, 
+      descripcion, fec_notificacion, fec_evento, 
+      fec_atencion, fec_cierre, cod_severidad, 
+      cod_estado, cod_subestado, cod_modalidad, 
+      cod_motivo, desc_motivo, tpo_hallazgo, 
+      tpo_sexo, est_reg, nro_caso_voxiva, 
+      tipo_voxiva, subtipo_voxiva, tiempo_cierre, 
+      area, cod_disp_origen, desc_disp_origen, 
+      flg_heridos, flg_callback, visible, 
+      usr_registra, usr_modifica, ind_leido, 
+      tpo_operador, flg_reasignado, url_audio, 
+      aux1, aux2, aux3, aux4
+      )
+    values (#{idHist,jdbcType=INTEGER}, #{idIncidencia,jdbcType=INTEGER}, #{codUnidad,jdbcType=INTEGER}, 
+      #{codCaso,jdbcType=INTEGER}, #{codSubcaso,jdbcType=INTEGER}, #{codMedio,jdbcType=INTEGER}, 
+      #{codSituacion,jdbcType=INTEGER}, #{descUnidad,jdbcType=VARCHAR}, #{descCaso,jdbcType=VARCHAR}, 
+      #{descSubcaso,jdbcType=VARCHAR}, #{descMedio,jdbcType=VARCHAR}, #{descSituacion,jdbcType=VARCHAR}, 
+      #{codUnidReport,jdbcType=INTEGER}, #{nombReport,jdbcType=VARCHAR}, #{telfReport,jdbcType=VARCHAR}, 
+      #{dirReport,jdbcType=VARCHAR}, #{cextReport,jdbcType=VARCHAR}, #{codNacReport,jdbcType=INTEGER}, 
+      #{codGeometria,jdbcType=INTEGER}, #{coordenadas,jdbcType=VARCHAR}, #{codTpoVia,jdbcType=INTEGER}, 
+      #{descTpoVia,jdbcType=VARCHAR}, #{descVia,jdbcType=VARCHAR}, #{cdra,jdbcType=VARCHAR}, 
+      #{dpto,jdbcType=VARCHAR}, #{zona,jdbcType=VARCHAR}, #{subzona,jdbcType=VARCHAR}, 
+      #{descripcion,jdbcType=VARCHAR}, #{fecNotificacion,jdbcType=TIMESTAMP}, #{fecEvento,jdbcType=TIMESTAMP}, 
+      #{fecAtencion,jdbcType=TIMESTAMP}, #{fecCierre,jdbcType=TIMESTAMP}, #{codSeveridad,jdbcType=INTEGER}, 
+      #{codEstado,jdbcType=INTEGER}, #{codSubestado,jdbcType=INTEGER}, #{codModalidad,jdbcType=INTEGER}, 
+      #{codMotivo,jdbcType=INTEGER}, #{descMotivo,jdbcType=VARCHAR}, #{tpoHallazgo,jdbcType=VARCHAR}, 
+      #{tpoSexo,jdbcType=VARCHAR}, #{estReg,jdbcType=VARCHAR}, #{nroCasoVoxiva,jdbcType=INTEGER}, 
+      #{tipoVoxiva,jdbcType=VARCHAR}, #{subtipoVoxiva,jdbcType=VARCHAR}, #{tiempoCierre,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{codDispOrigen,jdbcType=INTEGER}, #{descDispOrigen,jdbcType=VARCHAR}, 
+      #{flgHeridos,jdbcType=VARCHAR}, #{flgCallback,jdbcType=VARCHAR}, #{visible,jdbcType=VARCHAR}, 
+      #{usrRegistra,jdbcType=VARCHAR}, #{usrModifica,jdbcType=VARCHAR}, #{indLeido,jdbcType=VARCHAR}, 
+      #{tpoOperador,jdbcType=INTEGER}, #{flgReasignado,jdbcType=VARCHAR}, #{urlAudio,jdbcType=VARCHAR}, 
+      #{aux1,jdbcType=VARCHAR}, #{aux2,jdbcType=VARCHAR}, #{aux3,jdbcType=VARCHAR}, #{aux4,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidencia">
+    insert into histomapa.hist_incidencia
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idHist != null">
+        id_hist,
+      </if>
+      <if test="idIncidencia != null">
+        id_incidencia,
+      </if>
+      <if test="codUnidad != null">
+        cod_unidad,
+      </if>
+      <if test="codCaso != null">
+        cod_caso,
+      </if>
+      <if test="codSubcaso != null">
+        cod_subcaso,
+      </if>
+      <if test="codMedio != null">
+        cod_medio,
+      </if>
+      <if test="codSituacion != null">
+        cod_situacion,
+      </if>
+      <if test="descUnidad != null">
+        desc_unidad,
+      </if>
+      <if test="descCaso != null">
+        desc_caso,
+      </if>
+      <if test="descSubcaso != null">
+        desc_subcaso,
+      </if>
+      <if test="descMedio != null">
+        desc_medio,
+      </if>
+      <if test="descSituacion != null">
+        desc_situacion,
+      </if>
+      <if test="codUnidReport != null">
+        cod_unid_report,
+      </if>
+      <if test="nombReport != null">
+        nomb_report,
+      </if>
+      <if test="telfReport != null">
+        telf_report,
+      </if>
+      <if test="dirReport != null">
+        dir_report,
+      </if>
+      <if test="cextReport != null">
+        cext_report,
+      </if>
+      <if test="codNacReport != null">
+        cod_nac_report,
+      </if>
+      <if test="codGeometria != null">
+        cod_geometria,
+      </if>
+      <if test="coordenadas != null">
+        coordenadas,
+      </if>
+      <if test="codTpoVia != null">
+        cod_tpo_via,
+      </if>
+      <if test="descTpoVia != null">
+        desc_tpo_via,
+      </if>
+      <if test="descVia != null">
+        desc_via,
+      </if>
+      <if test="cdra != null">
+        cdra,
+      </if>
+      <if test="dpto != null">
+        dpto,
+      </if>
+      <if test="zona != null">
+        zona,
+      </if>
+      <if test="subzona != null">
+        subzona,
+      </if>
+      <if test="descripcion != null">
+        descripcion,
+      </if>
+      <if test="fecNotificacion != null">
+        fec_notificacion,
+      </if>
+      <if test="fecEvento != null">
+        fec_evento,
+      </if>
+      <if test="fecAtencion != null">
+        fec_atencion,
+      </if>
+      <if test="fecCierre != null">
+        fec_cierre,
+      </if>
+      <if test="codSeveridad != null">
+        cod_severidad,
+      </if>
+      <if test="codEstado != null">
+        cod_estado,
+      </if>
+      <if test="codSubestado != null">
+        cod_subestado,
+      </if>
+      <if test="codModalidad != null">
+        cod_modalidad,
+      </if>
+      <if test="codMotivo != null">
+        cod_motivo,
+      </if>
+      <if test="descMotivo != null">
+        desc_motivo,
+      </if>
+      <if test="tpoHallazgo != null">
+        tpo_hallazgo,
+      </if>
+      <if test="tpoSexo != null">
+        tpo_sexo,
+      </if>
+      <if test="estReg != null">
+        est_reg,
+      </if>
+      <if test="nroCasoVoxiva != null">
+        nro_caso_voxiva,
+      </if>
+      <if test="tipoVoxiva != null">
+        tipo_voxiva,
+      </if>
+      <if test="subtipoVoxiva != null">
+        subtipo_voxiva,
+      </if>
+      <if test="tiempoCierre != null">
+        tiempo_cierre,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="codDispOrigen != null">
+        cod_disp_origen,
+      </if>
+      <if test="descDispOrigen != null">
+        desc_disp_origen,
+      </if>
+      <if test="flgHeridos != null">
+        flg_heridos,
+      </if>
+      <if test="flgCallback != null">
+        flg_callback,
+      </if>
+      <if test="visible != null">
+        visible,
+      </if>
+      <if test="usrRegistra != null">
+        usr_registra,
+      </if>
+      <if test="usrModifica != null">
+        usr_modifica,
+      </if>
+      <if test="indLeido != null">
+        ind_leido,
+      </if>
+      <if test="tpoOperador != null">
+        tpo_operador,
+      </if>
+      <if test="flgReasignado != null">
+        flg_reasignado,
+      </if>
+      <if test="urlAudio != null">
+        url_audio,
+      </if>
+      <if test="aux1 != null">
+        aux1,
+      </if>
+      <if test="aux2 != null">
+        aux2,
+      </if>
+      <if test="aux3 != null">
+        aux3,
+      </if>
+      <if test="aux4 != null">
+        aux4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idHist != null">
+        #{idHist,jdbcType=INTEGER},
+      </if>
+      <if test="idIncidencia != null">
+        #{idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="codUnidad != null">
+        #{codUnidad,jdbcType=INTEGER},
+      </if>
+      <if test="codCaso != null">
+        #{codCaso,jdbcType=INTEGER},
+      </if>
+      <if test="codSubcaso != null">
+        #{codSubcaso,jdbcType=INTEGER},
+      </if>
+      <if test="codMedio != null">
+        #{codMedio,jdbcType=INTEGER},
+      </if>
+      <if test="codSituacion != null">
+        #{codSituacion,jdbcType=INTEGER},
+      </if>
+      <if test="descUnidad != null">
+        #{descUnidad,jdbcType=VARCHAR},
+      </if>
+      <if test="descCaso != null">
+        #{descCaso,jdbcType=VARCHAR},
+      </if>
+      <if test="descSubcaso != null">
+        #{descSubcaso,jdbcType=VARCHAR},
+      </if>
+      <if test="descMedio != null">
+        #{descMedio,jdbcType=VARCHAR},
+      </if>
+      <if test="descSituacion != null">
+        #{descSituacion,jdbcType=VARCHAR},
+      </if>
+      <if test="codUnidReport != null">
+        #{codUnidReport,jdbcType=INTEGER},
+      </if>
+      <if test="nombReport != null">
+        #{nombReport,jdbcType=VARCHAR},
+      </if>
+      <if test="telfReport != null">
+        #{telfReport,jdbcType=VARCHAR},
+      </if>
+      <if test="dirReport != null">
+        #{dirReport,jdbcType=VARCHAR},
+      </if>
+      <if test="cextReport != null">
+        #{cextReport,jdbcType=VARCHAR},
+      </if>
+      <if test="codNacReport != null">
+        #{codNacReport,jdbcType=INTEGER},
+      </if>
+      <if test="codGeometria != null">
+        #{codGeometria,jdbcType=INTEGER},
+      </if>
+      <if test="coordenadas != null">
+        #{coordenadas,jdbcType=VARCHAR},
+      </if>
+      <if test="codTpoVia != null">
+        #{codTpoVia,jdbcType=INTEGER},
+      </if>
+      <if test="descTpoVia != null">
+        #{descTpoVia,jdbcType=VARCHAR},
+      </if>
+      <if test="descVia != null">
+        #{descVia,jdbcType=VARCHAR},
+      </if>
+      <if test="cdra != null">
+        #{cdra,jdbcType=VARCHAR},
+      </if>
+      <if test="dpto != null">
+        #{dpto,jdbcType=VARCHAR},
+      </if>
+      <if test="zona != null">
+        #{zona,jdbcType=VARCHAR},
+      </if>
+      <if test="subzona != null">
+        #{subzona,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null">
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="fecNotificacion != null">
+        #{fecNotificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecEvento != null">
+        #{fecEvento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecAtencion != null">
+        #{fecAtencion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecCierre != null">
+        #{fecCierre,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codSeveridad != null">
+        #{codSeveridad,jdbcType=INTEGER},
+      </if>
+      <if test="codEstado != null">
+        #{codEstado,jdbcType=INTEGER},
+      </if>
+      <if test="codSubestado != null">
+        #{codSubestado,jdbcType=INTEGER},
+      </if>
+      <if test="codModalidad != null">
+        #{codModalidad,jdbcType=INTEGER},
+      </if>
+      <if test="codMotivo != null">
+        #{codMotivo,jdbcType=INTEGER},
+      </if>
+      <if test="descMotivo != null">
+        #{descMotivo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpoHallazgo != null">
+        #{tpoHallazgo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpoSexo != null">
+        #{tpoSexo,jdbcType=VARCHAR},
+      </if>
+      <if test="estReg != null">
+        #{estReg,jdbcType=VARCHAR},
+      </if>
+      <if test="nroCasoVoxiva != null">
+        #{nroCasoVoxiva,jdbcType=INTEGER},
+      </if>
+      <if test="tipoVoxiva != null">
+        #{tipoVoxiva,jdbcType=VARCHAR},
+      </if>
+      <if test="subtipoVoxiva != null">
+        #{subtipoVoxiva,jdbcType=VARCHAR},
+      </if>
+      <if test="tiempoCierre != null">
+        #{tiempoCierre,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="codDispOrigen != null">
+        #{codDispOrigen,jdbcType=INTEGER},
+      </if>
+      <if test="descDispOrigen != null">
+        #{descDispOrigen,jdbcType=VARCHAR},
+      </if>
+      <if test="flgHeridos != null">
+        #{flgHeridos,jdbcType=VARCHAR},
+      </if>
+      <if test="flgCallback != null">
+        #{flgCallback,jdbcType=VARCHAR},
+      </if>
+      <if test="visible != null">
+        #{visible,jdbcType=VARCHAR},
+      </if>
+      <if test="usrRegistra != null">
+        #{usrRegistra,jdbcType=VARCHAR},
+      </if>
+      <if test="usrModifica != null">
+        #{usrModifica,jdbcType=VARCHAR},
+      </if>
+      <if test="indLeido != null">
+        #{indLeido,jdbcType=VARCHAR},
+      </if>
+      <if test="tpoOperador != null">
+        #{tpoOperador,jdbcType=INTEGER},
+      </if>
+      <if test="flgReasignado != null">
+        #{flgReasignado,jdbcType=VARCHAR},
+      </if>
+      <if test="urlAudio != null">
+        #{urlAudio,jdbcType=VARCHAR},
+      </if>
+      <if test="aux1 != null">
+        #{aux1,jdbcType=VARCHAR},
+      </if>
+      <if test="aux2 != null">
+        #{aux2,jdbcType=VARCHAR},
+      </if>
+      <if test="aux3 != null">
+        #{aux3,jdbcType=VARCHAR},
+      </if>
+      <if test="aux4 != null">
+        #{aux4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidenciaCriteria" resultType="java.lang.Long">
+    select count(*) from histomapa.hist_incidencia
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update histomapa.hist_incidencia
+    <set>
+      <if test="record.idHist != null">
+        id_hist = #{record.idHist,jdbcType=INTEGER},
+      </if>
+      <if test="record.idIncidencia != null">
+        id_incidencia = #{record.idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="record.codUnidad != null">
+        cod_unidad = #{record.codUnidad,jdbcType=INTEGER},
+      </if>
+      <if test="record.codCaso != null">
+        cod_caso = #{record.codCaso,jdbcType=INTEGER},
+      </if>
+      <if test="record.codSubcaso != null">
+        cod_subcaso = #{record.codSubcaso,jdbcType=INTEGER},
+      </if>
+      <if test="record.codMedio != null">
+        cod_medio = #{record.codMedio,jdbcType=INTEGER},
+      </if>
+      <if test="record.codSituacion != null">
+        cod_situacion = #{record.codSituacion,jdbcType=INTEGER},
+      </if>
+      <if test="record.descUnidad != null">
+        desc_unidad = #{record.descUnidad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descCaso != null">
+        desc_caso = #{record.descCaso,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descSubcaso != null">
+        desc_subcaso = #{record.descSubcaso,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descMedio != null">
+        desc_medio = #{record.descMedio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descSituacion != null">
+        desc_situacion = #{record.descSituacion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codUnidReport != null">
+        cod_unid_report = #{record.codUnidReport,jdbcType=INTEGER},
+      </if>
+      <if test="record.nombReport != null">
+        nomb_report = #{record.nombReport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telfReport != null">
+        telf_report = #{record.telfReport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dirReport != null">
+        dir_report = #{record.dirReport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cextReport != null">
+        cext_report = #{record.cextReport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codNacReport != null">
+        cod_nac_report = #{record.codNacReport,jdbcType=INTEGER},
+      </if>
+      <if test="record.codGeometria != null">
+        cod_geometria = #{record.codGeometria,jdbcType=INTEGER},
+      </if>
+      <if test="record.coordenadas != null">
+        coordenadas = #{record.coordenadas,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codTpoVia != null">
+        cod_tpo_via = #{record.codTpoVia,jdbcType=INTEGER},
+      </if>
+      <if test="record.descTpoVia != null">
+        desc_tpo_via = #{record.descTpoVia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descVia != null">
+        desc_via = #{record.descVia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cdra != null">
+        cdra = #{record.cdra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dpto != null">
+        dpto = #{record.dpto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zona != null">
+        zona = #{record.zona,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subzona != null">
+        subzona = #{record.subzona,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descripcion != null">
+        descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fecNotificacion != null">
+        fec_notificacion = #{record.fecNotificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fecEvento != null">
+        fec_evento = #{record.fecEvento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fecAtencion != null">
+        fec_atencion = #{record.fecAtencion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fecCierre != null">
+        fec_cierre = #{record.fecCierre,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.codSeveridad != null">
+        cod_severidad = #{record.codSeveridad,jdbcType=INTEGER},
+      </if>
+      <if test="record.codEstado != null">
+        cod_estado = #{record.codEstado,jdbcType=INTEGER},
+      </if>
+      <if test="record.codSubestado != null">
+        cod_subestado = #{record.codSubestado,jdbcType=INTEGER},
+      </if>
+      <if test="record.codModalidad != null">
+        cod_modalidad = #{record.codModalidad,jdbcType=INTEGER},
+      </if>
+      <if test="record.codMotivo != null">
+        cod_motivo = #{record.codMotivo,jdbcType=INTEGER},
+      </if>
+      <if test="record.descMotivo != null">
+        desc_motivo = #{record.descMotivo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tpoHallazgo != null">
+        tpo_hallazgo = #{record.tpoHallazgo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tpoSexo != null">
+        tpo_sexo = #{record.tpoSexo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estReg != null">
+        est_reg = #{record.estReg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nroCasoVoxiva != null">
+        nro_caso_voxiva = #{record.nroCasoVoxiva,jdbcType=INTEGER},
+      </if>
+      <if test="record.tipoVoxiva != null">
+        tipo_voxiva = #{record.tipoVoxiva,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtipoVoxiva != null">
+        subtipo_voxiva = #{record.subtipoVoxiva,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tiempoCierre != null">
+        tiempo_cierre = #{record.tiempoCierre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.codDispOrigen != null">
+        cod_disp_origen = #{record.codDispOrigen,jdbcType=INTEGER},
+      </if>
+      <if test="record.descDispOrigen != null">
+        desc_disp_origen = #{record.descDispOrigen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flgHeridos != null">
+        flg_heridos = #{record.flgHeridos,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flgCallback != null">
+        flg_callback = #{record.flgCallback,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visible != null">
+        visible = #{record.visible,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usrRegistra != null">
+        usr_registra = #{record.usrRegistra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usrModifica != null">
+        usr_modifica = #{record.usrModifica,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indLeido != null">
+        ind_leido = #{record.indLeido,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tpoOperador != null">
+        tpo_operador = #{record.tpoOperador,jdbcType=INTEGER},
+      </if>
+      <if test="record.flgReasignado != null">
+        flg_reasignado = #{record.flgReasignado,jdbcType=VARCHAR},
+      </if>
+      <if test="record.urlAudio != null">
+        url_audio = #{record.urlAudio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aux1 != null">
+        aux1 = #{record.aux1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aux2 != null">
+        aux2 = #{record.aux2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aux3 != null">
+        aux3 = #{record.aux3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aux4 != null">
+        aux4 = #{record.aux4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update histomapa.hist_incidencia
+    set id_hist = #{record.idHist,jdbcType=INTEGER},
+      id_incidencia = #{record.idIncidencia,jdbcType=INTEGER},
+      cod_unidad = #{record.codUnidad,jdbcType=INTEGER},
+      cod_caso = #{record.codCaso,jdbcType=INTEGER},
+      cod_subcaso = #{record.codSubcaso,jdbcType=INTEGER},
+      cod_medio = #{record.codMedio,jdbcType=INTEGER},
+      cod_situacion = #{record.codSituacion,jdbcType=INTEGER},
+      desc_unidad = #{record.descUnidad,jdbcType=VARCHAR},
+      desc_caso = #{record.descCaso,jdbcType=VARCHAR},
+      desc_subcaso = #{record.descSubcaso,jdbcType=VARCHAR},
+      desc_medio = #{record.descMedio,jdbcType=VARCHAR},
+      desc_situacion = #{record.descSituacion,jdbcType=VARCHAR},
+      cod_unid_report = #{record.codUnidReport,jdbcType=INTEGER},
+      nomb_report = #{record.nombReport,jdbcType=VARCHAR},
+      telf_report = #{record.telfReport,jdbcType=VARCHAR},
+      dir_report = #{record.dirReport,jdbcType=VARCHAR},
+      cext_report = #{record.cextReport,jdbcType=VARCHAR},
+      cod_nac_report = #{record.codNacReport,jdbcType=INTEGER},
+      cod_geometria = #{record.codGeometria,jdbcType=INTEGER},
+      coordenadas = #{record.coordenadas,jdbcType=VARCHAR},
+      cod_tpo_via = #{record.codTpoVia,jdbcType=INTEGER},
+      desc_tpo_via = #{record.descTpoVia,jdbcType=VARCHAR},
+      desc_via = #{record.descVia,jdbcType=VARCHAR},
+      cdra = #{record.cdra,jdbcType=VARCHAR},
+      dpto = #{record.dpto,jdbcType=VARCHAR},
+      zona = #{record.zona,jdbcType=VARCHAR},
+      subzona = #{record.subzona,jdbcType=VARCHAR},
+      descripcion = #{record.descripcion,jdbcType=VARCHAR},
+      fec_notificacion = #{record.fecNotificacion,jdbcType=TIMESTAMP},
+      fec_evento = #{record.fecEvento,jdbcType=TIMESTAMP},
+      fec_atencion = #{record.fecAtencion,jdbcType=TIMESTAMP},
+      fec_cierre = #{record.fecCierre,jdbcType=TIMESTAMP},
+      cod_severidad = #{record.codSeveridad,jdbcType=INTEGER},
+      cod_estado = #{record.codEstado,jdbcType=INTEGER},
+      cod_subestado = #{record.codSubestado,jdbcType=INTEGER},
+      cod_modalidad = #{record.codModalidad,jdbcType=INTEGER},
+      cod_motivo = #{record.codMotivo,jdbcType=INTEGER},
+      desc_motivo = #{record.descMotivo,jdbcType=VARCHAR},
+      tpo_hallazgo = #{record.tpoHallazgo,jdbcType=VARCHAR},
+      tpo_sexo = #{record.tpoSexo,jdbcType=VARCHAR},
+      est_reg = #{record.estReg,jdbcType=VARCHAR},
+      nro_caso_voxiva = #{record.nroCasoVoxiva,jdbcType=INTEGER},
+      tipo_voxiva = #{record.tipoVoxiva,jdbcType=VARCHAR},
+      subtipo_voxiva = #{record.subtipoVoxiva,jdbcType=VARCHAR},
+      tiempo_cierre = #{record.tiempoCierre,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      cod_disp_origen = #{record.codDispOrigen,jdbcType=INTEGER},
+      desc_disp_origen = #{record.descDispOrigen,jdbcType=VARCHAR},
+      flg_heridos = #{record.flgHeridos,jdbcType=VARCHAR},
+      flg_callback = #{record.flgCallback,jdbcType=VARCHAR},
+      visible = #{record.visible,jdbcType=VARCHAR},
+      usr_registra = #{record.usrRegistra,jdbcType=VARCHAR},
+      usr_modifica = #{record.usrModifica,jdbcType=VARCHAR},
+      ind_leido = #{record.indLeido,jdbcType=VARCHAR},
+      tpo_operador = #{record.tpoOperador,jdbcType=INTEGER},
+      flg_reasignado = #{record.flgReasignado,jdbcType=VARCHAR},
+      url_audio = #{record.urlAudio,jdbcType=VARCHAR},
+      aux1 = #{record.aux1,jdbcType=VARCHAR},
+      aux2 = #{record.aux2,jdbcType=VARCHAR},
+      aux3 = #{record.aux3,jdbcType=VARCHAR},
+      aux4 = #{record.aux4,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidencia">
+    update histomapa.hist_incidencia
+    <set>
+      <if test="idIncidencia != null">
+        id_incidencia = #{idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="codUnidad != null">
+        cod_unidad = #{codUnidad,jdbcType=INTEGER},
+      </if>
+      <if test="codCaso != null">
+        cod_caso = #{codCaso,jdbcType=INTEGER},
+      </if>
+      <if test="codSubcaso != null">
+        cod_subcaso = #{codSubcaso,jdbcType=INTEGER},
+      </if>
+      <if test="codMedio != null">
+        cod_medio = #{codMedio,jdbcType=INTEGER},
+      </if>
+      <if test="codSituacion != null">
+        cod_situacion = #{codSituacion,jdbcType=INTEGER},
+      </if>
+      <if test="descUnidad != null">
+        desc_unidad = #{descUnidad,jdbcType=VARCHAR},
+      </if>
+      <if test="descCaso != null">
+        desc_caso = #{descCaso,jdbcType=VARCHAR},
+      </if>
+      <if test="descSubcaso != null">
+        desc_subcaso = #{descSubcaso,jdbcType=VARCHAR},
+      </if>
+      <if test="descMedio != null">
+        desc_medio = #{descMedio,jdbcType=VARCHAR},
+      </if>
+      <if test="descSituacion != null">
+        desc_situacion = #{descSituacion,jdbcType=VARCHAR},
+      </if>
+      <if test="codUnidReport != null">
+        cod_unid_report = #{codUnidReport,jdbcType=INTEGER},
+      </if>
+      <if test="nombReport != null">
+        nomb_report = #{nombReport,jdbcType=VARCHAR},
+      </if>
+      <if test="telfReport != null">
+        telf_report = #{telfReport,jdbcType=VARCHAR},
+      </if>
+      <if test="dirReport != null">
+        dir_report = #{dirReport,jdbcType=VARCHAR},
+      </if>
+      <if test="cextReport != null">
+        cext_report = #{cextReport,jdbcType=VARCHAR},
+      </if>
+      <if test="codNacReport != null">
+        cod_nac_report = #{codNacReport,jdbcType=INTEGER},
+      </if>
+      <if test="codGeometria != null">
+        cod_geometria = #{codGeometria,jdbcType=INTEGER},
+      </if>
+      <if test="coordenadas != null">
+        coordenadas = #{coordenadas,jdbcType=VARCHAR},
+      </if>
+      <if test="codTpoVia != null">
+        cod_tpo_via = #{codTpoVia,jdbcType=INTEGER},
+      </if>
+      <if test="descTpoVia != null">
+        desc_tpo_via = #{descTpoVia,jdbcType=VARCHAR},
+      </if>
+      <if test="descVia != null">
+        desc_via = #{descVia,jdbcType=VARCHAR},
+      </if>
+      <if test="cdra != null">
+        cdra = #{cdra,jdbcType=VARCHAR},
+      </if>
+      <if test="dpto != null">
+        dpto = #{dpto,jdbcType=VARCHAR},
+      </if>
+      <if test="zona != null">
+        zona = #{zona,jdbcType=VARCHAR},
+      </if>
+      <if test="subzona != null">
+        subzona = #{subzona,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null">
+        descripcion = #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="fecNotificacion != null">
+        fec_notificacion = #{fecNotificacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecEvento != null">
+        fec_evento = #{fecEvento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecAtencion != null">
+        fec_atencion = #{fecAtencion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecCierre != null">
+        fec_cierre = #{fecCierre,jdbcType=TIMESTAMP},
+      </if>
+      <if test="codSeveridad != null">
+        cod_severidad = #{codSeveridad,jdbcType=INTEGER},
+      </if>
+      <if test="codEstado != null">
+        cod_estado = #{codEstado,jdbcType=INTEGER},
+      </if>
+      <if test="codSubestado != null">
+        cod_subestado = #{codSubestado,jdbcType=INTEGER},
+      </if>
+      <if test="codModalidad != null">
+        cod_modalidad = #{codModalidad,jdbcType=INTEGER},
+      </if>
+      <if test="codMotivo != null">
+        cod_motivo = #{codMotivo,jdbcType=INTEGER},
+      </if>
+      <if test="descMotivo != null">
+        desc_motivo = #{descMotivo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpoHallazgo != null">
+        tpo_hallazgo = #{tpoHallazgo,jdbcType=VARCHAR},
+      </if>
+      <if test="tpoSexo != null">
+        tpo_sexo = #{tpoSexo,jdbcType=VARCHAR},
+      </if>
+      <if test="estReg != null">
+        est_reg = #{estReg,jdbcType=VARCHAR},
+      </if>
+      <if test="nroCasoVoxiva != null">
+        nro_caso_voxiva = #{nroCasoVoxiva,jdbcType=INTEGER},
+      </if>
+      <if test="tipoVoxiva != null">
+        tipo_voxiva = #{tipoVoxiva,jdbcType=VARCHAR},
+      </if>
+      <if test="subtipoVoxiva != null">
+        subtipo_voxiva = #{subtipoVoxiva,jdbcType=VARCHAR},
+      </if>
+      <if test="tiempoCierre != null">
+        tiempo_cierre = #{tiempoCierre,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="codDispOrigen != null">
+        cod_disp_origen = #{codDispOrigen,jdbcType=INTEGER},
+      </if>
+      <if test="descDispOrigen != null">
+        desc_disp_origen = #{descDispOrigen,jdbcType=VARCHAR},
+      </if>
+      <if test="flgHeridos != null">
+        flg_heridos = #{flgHeridos,jdbcType=VARCHAR},
+      </if>
+      <if test="flgCallback != null">
+        flg_callback = #{flgCallback,jdbcType=VARCHAR},
+      </if>
+      <if test="visible != null">
+        visible = #{visible,jdbcType=VARCHAR},
+      </if>
+      <if test="usrRegistra != null">
+        usr_registra = #{usrRegistra,jdbcType=VARCHAR},
+      </if>
+      <if test="usrModifica != null">
+        usr_modifica = #{usrModifica,jdbcType=VARCHAR},
+      </if>
+      <if test="indLeido != null">
+        ind_leido = #{indLeido,jdbcType=VARCHAR},
+      </if>
+      <if test="tpoOperador != null">
+        tpo_operador = #{tpoOperador,jdbcType=INTEGER},
+      </if>
+      <if test="flgReasignado != null">
+        flg_reasignado = #{flgReasignado,jdbcType=VARCHAR},
+      </if>
+      <if test="urlAudio != null">
+        url_audio = #{urlAudio,jdbcType=VARCHAR},
+      </if>
+      <if test="aux1 != null">
+        aux1 = #{aux1,jdbcType=VARCHAR},
+      </if>
+      <if test="aux2 != null">
+        aux2 = #{aux2,jdbcType=VARCHAR},
+      </if>
+      <if test="aux3 != null">
+        aux3 = #{aux3,jdbcType=VARCHAR},
+      </if>
+      <if test="aux4 != null">
+        aux4 = #{aux4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_hist = #{idHist,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidencia">
+    update histomapa.hist_incidencia
+    set id_incidencia = #{idIncidencia,jdbcType=INTEGER},
+      cod_unidad = #{codUnidad,jdbcType=INTEGER},
+      cod_caso = #{codCaso,jdbcType=INTEGER},
+      cod_subcaso = #{codSubcaso,jdbcType=INTEGER},
+      cod_medio = #{codMedio,jdbcType=INTEGER},
+      cod_situacion = #{codSituacion,jdbcType=INTEGER},
+      desc_unidad = #{descUnidad,jdbcType=VARCHAR},
+      desc_caso = #{descCaso,jdbcType=VARCHAR},
+      desc_subcaso = #{descSubcaso,jdbcType=VARCHAR},
+      desc_medio = #{descMedio,jdbcType=VARCHAR},
+      desc_situacion = #{descSituacion,jdbcType=VARCHAR},
+      cod_unid_report = #{codUnidReport,jdbcType=INTEGER},
+      nomb_report = #{nombReport,jdbcType=VARCHAR},
+      telf_report = #{telfReport,jdbcType=VARCHAR},
+      dir_report = #{dirReport,jdbcType=VARCHAR},
+      cext_report = #{cextReport,jdbcType=VARCHAR},
+      cod_nac_report = #{codNacReport,jdbcType=INTEGER},
+      cod_geometria = #{codGeometria,jdbcType=INTEGER},
+      coordenadas = #{coordenadas,jdbcType=VARCHAR},
+      cod_tpo_via = #{codTpoVia,jdbcType=INTEGER},
+      desc_tpo_via = #{descTpoVia,jdbcType=VARCHAR},
+      desc_via = #{descVia,jdbcType=VARCHAR},
+      cdra = #{cdra,jdbcType=VARCHAR},
+      dpto = #{dpto,jdbcType=VARCHAR},
+      zona = #{zona,jdbcType=VARCHAR},
+      subzona = #{subzona,jdbcType=VARCHAR},
+      descripcion = #{descripcion,jdbcType=VARCHAR},
+      fec_notificacion = #{fecNotificacion,jdbcType=TIMESTAMP},
+      fec_evento = #{fecEvento,jdbcType=TIMESTAMP},
+      fec_atencion = #{fecAtencion,jdbcType=TIMESTAMP},
+      fec_cierre = #{fecCierre,jdbcType=TIMESTAMP},
+      cod_severidad = #{codSeveridad,jdbcType=INTEGER},
+      cod_estado = #{codEstado,jdbcType=INTEGER},
+      cod_subestado = #{codSubestado,jdbcType=INTEGER},
+      cod_modalidad = #{codModalidad,jdbcType=INTEGER},
+      cod_motivo = #{codMotivo,jdbcType=INTEGER},
+      desc_motivo = #{descMotivo,jdbcType=VARCHAR},
+      tpo_hallazgo = #{tpoHallazgo,jdbcType=VARCHAR},
+      tpo_sexo = #{tpoSexo,jdbcType=VARCHAR},
+      est_reg = #{estReg,jdbcType=VARCHAR},
+      nro_caso_voxiva = #{nroCasoVoxiva,jdbcType=INTEGER},
+      tipo_voxiva = #{tipoVoxiva,jdbcType=VARCHAR},
+      subtipo_voxiva = #{subtipoVoxiva,jdbcType=VARCHAR},
+      tiempo_cierre = #{tiempoCierre,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      cod_disp_origen = #{codDispOrigen,jdbcType=INTEGER},
+      desc_disp_origen = #{descDispOrigen,jdbcType=VARCHAR},
+      flg_heridos = #{flgHeridos,jdbcType=VARCHAR},
+      flg_callback = #{flgCallback,jdbcType=VARCHAR},
+      visible = #{visible,jdbcType=VARCHAR},
+      usr_registra = #{usrRegistra,jdbcType=VARCHAR},
+      usr_modifica = #{usrModifica,jdbcType=VARCHAR},
+      ind_leido = #{indLeido,jdbcType=VARCHAR},
+      tpo_operador = #{tpoOperador,jdbcType=INTEGER},
+      flg_reasignado = #{flgReasignado,jdbcType=VARCHAR},
+      url_audio = #{urlAudio,jdbcType=VARCHAR},
+      aux1 = #{aux1,jdbcType=VARCHAR},
+      aux2 = #{aux2,jdbcType=VARCHAR},
+      aux3 = #{aux3,jdbcType=VARCHAR},
+      aux4 = #{aux4,jdbcType=VARCHAR}
+    where id_hist = #{idHist,jdbcType=INTEGER}
+  </update>
+</mapper>

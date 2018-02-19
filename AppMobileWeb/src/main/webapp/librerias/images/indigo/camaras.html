@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+  <head>
+
+  <script>
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  var IP_CAMARA = getUrlVars().ipCam;
+  var IS_PTZ = getUrlVars().isPtz;
+  
+
+
+  </script>
+  
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>ControlCenterVideoControl HTML Example</title>
+
+    <style type='text/css'>
+      #textFieldContainer {
+        width: 528px;
+        clear: both;
+      }
+      #textFieldContainer input {
+        width:100%;
+        clear:both;
+        margin-bottom: 3px;
+        margin-top: 2px;
+      }
+
+body{
+  margin:0px;
+  padding:0px;
+   overflow:hidden;
+}
+
+    </style>
+
+    <script type="text/javascript">
+
+
+      function getPane()
+      {
+        var control = document.getElementById('videoControl').object;
+        return control.Pane;
+      }
+
+      function startVideo()
+      {
+        var accessUrl =  ''; 
+		//'iv://192.168.201.180';document.getElementById('AccessUrl').value;
+		
+		var user = '';
+		var pass = '';
+		
+		var streamTransport = 2;
+		
+		if(IS_PTZ == '1'){
+			accessUrl =  'http://'+IP_CAMARA+'/onvif/device_service';
+			user = 'Admin';
+			pass = '1234';
+			streamTransport = 1;
+		}else{
+			accessUrl =  'iv://'+IP_CAMARA;
+		}
+		
+		
+		
+        var profile = document.getElementById('Profile').value;
+        var username = user;
+        var password = pass;
+        //var streamTransport = document.getElementById('StreamTransport').value;
+
+        if ( accessUrl == "" )
+        {
+          alert( 'Please specify an access url and try again.' );
+          return 0;
+        }
+
+        var pane = getPane();
+
+		/*alert(username);
+		alert(password);
+		alert(accessUrl);
+		alert(streamTransport);
+		alert(1);*/
+		
+        pane.SetCredentials(username, password);
+        pane.StartLiveVideo(accessUrl, '', streamTransport);
+
+        return 0;
+      }
+
+      function stopVideo()
+      {
+        getPane().StopVideo();
+      }
+
+      function startAudio()
+      {
+        getPane().StartAudio();
+      }
+
+      function stopAudio()
+      {
+        getPane().StopAudio();
+      }
+    </script>
+
+    <script for='videoControl' event='StreamConnected'>
+      document.getElementById('ControlStatus').value = 'Stream Connected';
+    </script>
+    <script for='videoControl' event='StreamDisconnected'>
+      document.getElementById('ControlStatus').value = 'Stream Disconnected';
+    </script>
+    <script for='videoControl' event='StreamError'>
+      document.getElementById('ControlStatus').value = 'Stream Error';
+    </script>
+
+  </head>
+
+  <body>
+
+    <object classid="clsid:5EF40891-9BB3-40B4-94EE-D73C290E3399" id="videoControl" width="100%" height="100%" style="" codebase="ControlCenterVideoSDK.cab" >
+    </object>
+
+    <form name=videocontrol action="" method=post style="display:none;">
+      <div id='textFieldContainer'>
+        Status: <input type='text' id='ControlStatus' disabled='disabled' /><br />
+        Access URL: <input type='text' id='AccessUrl' /><br />
+        Profile: <input type='text' id='Profile' /><br />
+        Username: <input type='text' id='Username' /><br />
+        Password: <input type='password' id='Password' /><br />
+        Stream Transport Class:
+        <select id='StreamTransport'>
+          <option value='1'>Best Effort</option>
+          <option selected value='2'>Reliable</option>
+          <option value='3'>Multicast</option>
+          <option value='4'>Firewall Friendly</option>
+        </select><br />
+      </div>
+      <input type=button ID="StartVideo" value="Start Video" onclick="startVideo();"/>
+      <input type=button ID="StopVideo" value="Stop Video" onclick="stopVideo();"/>
+      <input type=button ID="StartAudio" value="Start Audio" onclick="startAudio();" />
+      <input type=button ID="StopAudio" value="Stop Audio" onclick="stopAudio();" />
+      <br />
+      <br />
+    </form>
+
+  </body>
+<script>
+window.onload = function(){
+
+setTimeout(
+			function(){
+			//alert('start');
+				startVideo();
+			},400);
+
+
+}
+</script>
+</html>

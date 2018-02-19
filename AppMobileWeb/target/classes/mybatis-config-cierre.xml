@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+		
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="pe.gob.miraflores.mobile.domain.auditoriapeatonal.AuditoriaPeatonal" alias="AuditoriaPeatonal" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.PreInscripcionCierreCalle" alias="PreInscripcionCierreCalle" />
+		<typeAlias type="pe.gob.miraflores.mobile.domain.mapaincidencias.AuditoriaIncidencia" alias="AuditoriaIncidencia" />
+		
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="pe/gob/miraflores/mobile/dao/auditoriapeatonal/sqlmap/AuditoriaPeatonalMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/PreInscripcionCierreCalleMapper.xml" />
+		<mapper resource="pe/gob/miraflores/mobile/dao/mapaincidencias/sqlmap/AuditoriaIncidenciaMapper.xml" />
+		
+	</mappers>
+	
+</configuration>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+			
+			
+		<bean id="emailManager" class="pe.gob.miraflores.mobile.service.email.EmailManager">
+					<property name="from" value="portal@mailmiraflores.info" />
+					<property name="host" value="10.0.5.189" />			
+					<property name="port" value="25" />
+					<property name="username" value="portal" />
+					<property name="password" value="-p0rt4l-" />
+		</bean> 
+		
+</beans>

@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.miraflores.mobile.historico.dao.EstadisticaBaseMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.miraflores.mobile.domain.historico.EstadisticaBase">
+    <id column="id_estad" jdbcType="BIGINT" property="idEstad" />
+    <result column="id_incidencia" jdbcType="INTEGER" property="idIncidencia" />
+    <result column="tipif" jdbcType="INTEGER" property="tipif" />
+    <result column="zonif" jdbcType="INTEGER" property="zonif" />
+    <result column="numer" jdbcType="INTEGER" property="numer" />
+    <result column="cdra" jdbcType="INTEGER" property="cdra" />
+    <result column="hdia" jdbcType="INTEGER" property="hdia" />
+    <result column="cdia" jdbcType="INTEGER" property="cdia" />
+    <result column="ndia" jdbcType="INTEGER" property="ndia" />
+    <result column="cmes" jdbcType="INTEGER" property="cmes" />
+    <result column="anio" jdbcType="INTEGER" property="anio" />
+    <result column="csever" jdbcType="INTEGER" property="csever" />
+    <result column="cestad" jdbcType="INTEGER" property="cestad" />
+    <result column="cmodal" jdbcType="INTEGER" property="cmodal" />
+    <result column="cmotiv" jdbcType="INTEGER" property="cmotiv" />
+    <result column="flghall" jdbcType="INTEGER" property="flghall" />
+    <result column="flgsexo" jdbcType="INTEGER" property="flgsexo" />
+    <result column="cmed" jdbcType="INTEGER" property="cmed" />
+    <result column="lat" jdbcType="REAL" property="lat" />
+    <result column="lng" jdbcType="REAL" property="lng" />
+    <result column="fecha" jdbcType="TIMESTAMP" property="fecha" />
+    <result column="freg" jdbcType="TIMESTAMP" property="freg" />
+    <result column="unidad" jdbcType="VARCHAR" property="unidad" />
+    <result column="caso" jdbcType="VARCHAR" property="caso" />
+    <result column="subcaso" jdbcType="VARCHAR" property="subcaso" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="zona" jdbcType="VARCHAR" property="zona" />
+    <result column="subzona" jdbcType="VARCHAR" property="subzona" />
+    <result column="severidad" jdbcType="VARCHAR" property="severidad" />
+    <result column="estado" jdbcType="VARCHAR" property="estado" />
+    <result column="subestado" jdbcType="VARCHAR" property="subestado" />
+    <result column="modalidad" jdbcType="VARCHAR" property="modalidad" />
+    <result column="via" jdbcType="VARCHAR" property="via" />
+    <result column="ddia" jdbcType="VARCHAR" property="ddia" />
+    <result column="dmes" jdbcType="VARCHAR" property="dmes" />
+    <result column="medio" jdbcType="VARCHAR" property="medio" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_estad, id_incidencia, tipif, zonif, numer, cdra, hdia, cdia, ndia, cmes, anio, 
+    csever, cestad, cmodal, cmotiv, flghall, flgsexo, cmed, lat, lng, fecha, freg, unidad, 
+    caso, subcaso, area, zona, subzona, severidad, estado, subestado, modalidad, via, 
+    ddia, dmes, medio
+  </sql>
+  <select id="selectByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBaseCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from histomapa.estadistica_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from histomapa.estadistica_base
+    where id_estad = #{idEstad,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from histomapa.estadistica_base
+    where id_estad = #{idEstad,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBaseCriteria">
+    delete from histomapa.estadistica_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBase">
+    insert into histomapa.estadistica_base (id_estad, id_incidencia, tipif, 
+      zonif, numer, cdra, 
+      hdia, cdia, ndia, cmes, 
+      anio, csever, cestad, 
+      cmodal, cmotiv, flghall, 
+      flgsexo, cmed, lat, lng, 
+      fecha, freg, unidad, 
+      caso, subcaso, area, 
+      zona, subzona, severidad, 
+      estado, subestado, modalidad, 
+      via, ddia, dmes, medio
+      )
+    values (#{idEstad,jdbcType=BIGINT}, #{idIncidencia,jdbcType=INTEGER}, #{tipif,jdbcType=INTEGER}, 
+      #{zonif,jdbcType=INTEGER}, #{numer,jdbcType=INTEGER}, #{cdra,jdbcType=INTEGER}, 
+      #{hdia,jdbcType=INTEGER}, #{cdia,jdbcType=INTEGER}, #{ndia,jdbcType=INTEGER}, #{cmes,jdbcType=INTEGER}, 
+      #{anio,jdbcType=INTEGER}, #{csever,jdbcType=INTEGER}, #{cestad,jdbcType=INTEGER}, 
+      #{cmodal,jdbcType=INTEGER}, #{cmotiv,jdbcType=INTEGER}, #{flghall,jdbcType=INTEGER}, 
+      #{flgsexo,jdbcType=INTEGER}, #{cmed,jdbcType=INTEGER}, #{lat,jdbcType=REAL}, #{lng,jdbcType=REAL}, 
+      #{fecha,jdbcType=TIMESTAMP}, #{freg,jdbcType=TIMESTAMP}, #{unidad,jdbcType=VARCHAR}, 
+      #{caso,jdbcType=VARCHAR}, #{subcaso,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{zona,jdbcType=VARCHAR}, #{subzona,jdbcType=VARCHAR}, #{severidad,jdbcType=VARCHAR}, 
+      #{estado,jdbcType=VARCHAR}, #{subestado,jdbcType=VARCHAR}, #{modalidad,jdbcType=VARCHAR}, 
+      #{via,jdbcType=VARCHAR}, #{ddia,jdbcType=VARCHAR}, #{dmes,jdbcType=VARCHAR}, #{medio,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBase">
+    insert into histomapa.estadistica_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idEstad != null">
+        id_estad,
+      </if>
+      <if test="idIncidencia != null">
+        id_incidencia,
+      </if>
+      <if test="tipif != null">
+        tipif,
+      </if>
+      <if test="zonif != null">
+        zonif,
+      </if>
+      <if test="numer != null">
+        numer,
+      </if>
+      <if test="cdra != null">
+        cdra,
+      </if>
+      <if test="hdia != null">
+        hdia,
+      </if>
+      <if test="cdia != null">
+        cdia,
+      </if>
+      <if test="ndia != null">
+        ndia,
+      </if>
+      <if test="cmes != null">
+        cmes,
+      </if>
+      <if test="anio != null">
+        anio,
+      </if>
+      <if test="csever != null">
+        csever,
+      </if>
+      <if test="cestad != null">
+        cestad,
+      </if>
+      <if test="cmodal != null">
+        cmodal,
+      </if>
+      <if test="cmotiv != null">
+        cmotiv,
+      </if>
+      <if test="flghall != null">
+        flghall,
+      </if>
+      <if test="flgsexo != null">
+        flgsexo,
+      </if>
+      <if test="cmed != null">
+        cmed,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="fecha != null">
+        fecha,
+      </if>
+      <if test="freg != null">
+        freg,
+      </if>
+      <if test="unidad != null">
+        unidad,
+      </if>
+      <if test="caso != null">
+        caso,
+      </if>
+      <if test="subcaso != null">
+        subcaso,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="zona != null">
+        zona,
+      </if>
+      <if test="subzona != null">
+        subzona,
+      </if>
+      <if test="severidad != null">
+        severidad,
+      </if>
+      <if test="estado != null">
+        estado,
+      </if>
+      <if test="subestado != null">
+        subestado,
+      </if>
+      <if test="modalidad != null">
+        modalidad,
+      </if>
+      <if test="via != null">
+        via,
+      </if>
+      <if test="ddia != null">
+        ddia,
+      </if>
+      <if test="dmes != null">
+        dmes,
+      </if>
+      <if test="medio != null">
+        medio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idEstad != null">
+        #{idEstad,jdbcType=BIGINT},
+      </if>
+      <if test="idIncidencia != null">
+        #{idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="tipif != null">
+        #{tipif,jdbcType=INTEGER},
+      </if>
+      <if test="zonif != null">
+        #{zonif,jdbcType=INTEGER},
+      </if>
+      <if test="numer != null">
+        #{numer,jdbcType=INTEGER},
+      </if>
+      <if test="cdra != null">
+        #{cdra,jdbcType=INTEGER},
+      </if>
+      <if test="hdia != null">
+        #{hdia,jdbcType=INTEGER},
+      </if>
+      <if test="cdia != null">
+        #{cdia,jdbcType=INTEGER},
+      </if>
+      <if test="ndia != null">
+        #{ndia,jdbcType=INTEGER},
+      </if>
+      <if test="cmes != null">
+        #{cmes,jdbcType=INTEGER},
+      </if>
+      <if test="anio != null">
+        #{anio,jdbcType=INTEGER},
+      </if>
+      <if test="csever != null">
+        #{csever,jdbcType=INTEGER},
+      </if>
+      <if test="cestad != null">
+        #{cestad,jdbcType=INTEGER},
+      </if>
+      <if test="cmodal != null">
+        #{cmodal,jdbcType=INTEGER},
+      </if>
+      <if test="cmotiv != null">
+        #{cmotiv,jdbcType=INTEGER},
+      </if>
+      <if test="flghall != null">
+        #{flghall,jdbcType=INTEGER},
+      </if>
+      <if test="flgsexo != null">
+        #{flgsexo,jdbcType=INTEGER},
+      </if>
+      <if test="cmed != null">
+        #{cmed,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=REAL},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=REAL},
+      </if>
+      <if test="fecha != null">
+        #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freg != null">
+        #{freg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unidad != null">
+        #{unidad,jdbcType=VARCHAR},
+      </if>
+      <if test="caso != null">
+        #{caso,jdbcType=VARCHAR},
+      </if>
+      <if test="subcaso != null">
+        #{subcaso,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="zona != null">
+        #{zona,jdbcType=VARCHAR},
+      </if>
+      <if test="subzona != null">
+        #{subzona,jdbcType=VARCHAR},
+      </if>
+      <if test="severidad != null">
+        #{severidad,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=VARCHAR},
+      </if>
+      <if test="subestado != null">
+        #{subestado,jdbcType=VARCHAR},
+      </if>
+      <if test="modalidad != null">
+        #{modalidad,jdbcType=VARCHAR},
+      </if>
+      <if test="via != null">
+        #{via,jdbcType=VARCHAR},
+      </if>
+      <if test="ddia != null">
+        #{ddia,jdbcType=VARCHAR},
+      </if>
+      <if test="dmes != null">
+        #{dmes,jdbcType=VARCHAR},
+      </if>
+      <if test="medio != null">
+        #{medio,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBaseCriteria" resultType="java.lang.Long">
+    select count(*) from histomapa.estadistica_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update histomapa.estadistica_base
+    <set>
+      <if test="record.idEstad != null">
+        id_estad = #{record.idEstad,jdbcType=BIGINT},
+      </if>
+      <if test="record.idIncidencia != null">
+        id_incidencia = #{record.idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="record.tipif != null">
+        tipif = #{record.tipif,jdbcType=INTEGER},
+      </if>
+      <if test="record.zonif != null">
+        zonif = #{record.zonif,jdbcType=INTEGER},
+      </if>
+      <if test="record.numer != null">
+        numer = #{record.numer,jdbcType=INTEGER},
+      </if>
+      <if test="record.cdra != null">
+        cdra = #{record.cdra,jdbcType=INTEGER},
+      </if>
+      <if test="record.hdia != null">
+        hdia = #{record.hdia,jdbcType=INTEGER},
+      </if>
+      <if test="record.cdia != null">
+        cdia = #{record.cdia,jdbcType=INTEGER},
+      </if>
+      <if test="record.ndia != null">
+        ndia = #{record.ndia,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmes != null">
+        cmes = #{record.cmes,jdbcType=INTEGER},
+      </if>
+      <if test="record.anio != null">
+        anio = #{record.anio,jdbcType=INTEGER},
+      </if>
+      <if test="record.csever != null">
+        csever = #{record.csever,jdbcType=INTEGER},
+      </if>
+      <if test="record.cestad != null">
+        cestad = #{record.cestad,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmodal != null">
+        cmodal = #{record.cmodal,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmotiv != null">
+        cmotiv = #{record.cmotiv,jdbcType=INTEGER},
+      </if>
+      <if test="record.flghall != null">
+        flghall = #{record.flghall,jdbcType=INTEGER},
+      </if>
+      <if test="record.flgsexo != null">
+        flgsexo = #{record.flgsexo,jdbcType=INTEGER},
+      </if>
+      <if test="record.cmed != null">
+        cmed = #{record.cmed,jdbcType=INTEGER},
+      </if>
+      <if test="record.lat != null">
+        lat = #{record.lat,jdbcType=REAL},
+      </if>
+      <if test="record.lng != null">
+        lng = #{record.lng,jdbcType=REAL},
+      </if>
+      <if test="record.fecha != null">
+        fecha = #{record.fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.freg != null">
+        freg = #{record.freg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.unidad != null">
+        unidad = #{record.unidad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caso != null">
+        caso = #{record.caso,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subcaso != null">
+        subcaso = #{record.subcaso,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zona != null">
+        zona = #{record.zona,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subzona != null">
+        subzona = #{record.subzona,jdbcType=VARCHAR},
+      </if>
+      <if test="record.severidad != null">
+        severidad = #{record.severidad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estado != null">
+        estado = #{record.estado,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subestado != null">
+        subestado = #{record.subestado,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modalidad != null">
+        modalidad = #{record.modalidad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.via != null">
+        via = #{record.via,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ddia != null">
+        ddia = #{record.ddia,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmes != null">
+        dmes = #{record.dmes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medio != null">
+        medio = #{record.medio,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update histomapa.estadistica_base
+    set id_estad = #{record.idEstad,jdbcType=BIGINT},
+      id_incidencia = #{record.idIncidencia,jdbcType=INTEGER},
+      tipif = #{record.tipif,jdbcType=INTEGER},
+      zonif = #{record.zonif,jdbcType=INTEGER},
+      numer = #{record.numer,jdbcType=INTEGER},
+      cdra = #{record.cdra,jdbcType=INTEGER},
+      hdia = #{record.hdia,jdbcType=INTEGER},
+      cdia = #{record.cdia,jdbcType=INTEGER},
+      ndia = #{record.ndia,jdbcType=INTEGER},
+      cmes = #{record.cmes,jdbcType=INTEGER},
+      anio = #{record.anio,jdbcType=INTEGER},
+      csever = #{record.csever,jdbcType=INTEGER},
+      cestad = #{record.cestad,jdbcType=INTEGER},
+      cmodal = #{record.cmodal,jdbcType=INTEGER},
+      cmotiv = #{record.cmotiv,jdbcType=INTEGER},
+      flghall = #{record.flghall,jdbcType=INTEGER},
+      flgsexo = #{record.flgsexo,jdbcType=INTEGER},
+      cmed = #{record.cmed,jdbcType=INTEGER},
+      lat = #{record.lat,jdbcType=REAL},
+      lng = #{record.lng,jdbcType=REAL},
+      fecha = #{record.fecha,jdbcType=TIMESTAMP},
+      freg = #{record.freg,jdbcType=TIMESTAMP},
+      unidad = #{record.unidad,jdbcType=VARCHAR},
+      caso = #{record.caso,jdbcType=VARCHAR},
+      subcaso = #{record.subcaso,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      zona = #{record.zona,jdbcType=VARCHAR},
+      subzona = #{record.subzona,jdbcType=VARCHAR},
+      severidad = #{record.severidad,jdbcType=VARCHAR},
+      estado = #{record.estado,jdbcType=VARCHAR},
+      subestado = #{record.subestado,jdbcType=VARCHAR},
+      modalidad = #{record.modalidad,jdbcType=VARCHAR},
+      via = #{record.via,jdbcType=VARCHAR},
+      ddia = #{record.ddia,jdbcType=VARCHAR},
+      dmes = #{record.dmes,jdbcType=VARCHAR},
+      medio = #{record.medio,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBase">
+    update histomapa.estadistica_base
+    <set>
+      <if test="idIncidencia != null">
+        id_incidencia = #{idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="tipif != null">
+        tipif = #{tipif,jdbcType=INTEGER},
+      </if>
+      <if test="zonif != null">
+        zonif = #{zonif,jdbcType=INTEGER},
+      </if>
+      <if test="numer != null">
+        numer = #{numer,jdbcType=INTEGER},
+      </if>
+      <if test="cdra != null">
+        cdra = #{cdra,jdbcType=INTEGER},
+      </if>
+      <if test="hdia != null">
+        hdia = #{hdia,jdbcType=INTEGER},
+      </if>
+      <if test="cdia != null">
+        cdia = #{cdia,jdbcType=INTEGER},
+      </if>
+      <if test="ndia != null">
+        ndia = #{ndia,jdbcType=INTEGER},
+      </if>
+      <if test="cmes != null">
+        cmes = #{cmes,jdbcType=INTEGER},
+      </if>
+      <if test="anio != null">
+        anio = #{anio,jdbcType=INTEGER},
+      </if>
+      <if test="csever != null">
+        csever = #{csever,jdbcType=INTEGER},
+      </if>
+      <if test="cestad != null">
+        cestad = #{cestad,jdbcType=INTEGER},
+      </if>
+      <if test="cmodal != null">
+        cmodal = #{cmodal,jdbcType=INTEGER},
+      </if>
+      <if test="cmotiv != null">
+        cmotiv = #{cmotiv,jdbcType=INTEGER},
+      </if>
+      <if test="flghall != null">
+        flghall = #{flghall,jdbcType=INTEGER},
+      </if>
+      <if test="flgsexo != null">
+        flgsexo = #{flgsexo,jdbcType=INTEGER},
+      </if>
+      <if test="cmed != null">
+        cmed = #{cmed,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=REAL},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=REAL},
+      </if>
+      <if test="fecha != null">
+        fecha = #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="freg != null">
+        freg = #{freg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unidad != null">
+        unidad = #{unidad,jdbcType=VARCHAR},
+      </if>
+      <if test="caso != null">
+        caso = #{caso,jdbcType=VARCHAR},
+      </if>
+      <if test="subcaso != null">
+        subcaso = #{subcaso,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="zona != null">
+        zona = #{zona,jdbcType=VARCHAR},
+      </if>
+      <if test="subzona != null">
+        subzona = #{subzona,jdbcType=VARCHAR},
+      </if>
+      <if test="severidad != null">
+        severidad = #{severidad,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        estado = #{estado,jdbcType=VARCHAR},
+      </if>
+      <if test="subestado != null">
+        subestado = #{subestado,jdbcType=VARCHAR},
+      </if>
+      <if test="modalidad != null">
+        modalidad = #{modalidad,jdbcType=VARCHAR},
+      </if>
+      <if test="via != null">
+        via = #{via,jdbcType=VARCHAR},
+      </if>
+      <if test="ddia != null">
+        ddia = #{ddia,jdbcType=VARCHAR},
+      </if>
+      <if test="dmes != null">
+        dmes = #{dmes,jdbcType=VARCHAR},
+      </if>
+      <if test="medio != null">
+        medio = #{medio,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_estad = #{idEstad,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.miraflores.mobile.domain.historico.EstadisticaBase">
+    update histomapa.estadistica_base
+    set id_incidencia = #{idIncidencia,jdbcType=INTEGER},
+      tipif = #{tipif,jdbcType=INTEGER},
+      zonif = #{zonif,jdbcType=INTEGER},
+      numer = #{numer,jdbcType=INTEGER},
+      cdra = #{cdra,jdbcType=INTEGER},
+      hdia = #{hdia,jdbcType=INTEGER},
+      cdia = #{cdia,jdbcType=INTEGER},
+      ndia = #{ndia,jdbcType=INTEGER},
+      cmes = #{cmes,jdbcType=INTEGER},
+      anio = #{anio,jdbcType=INTEGER},
+      csever = #{csever,jdbcType=INTEGER},
+      cestad = #{cestad,jdbcType=INTEGER},
+      cmodal = #{cmodal,jdbcType=INTEGER},
+      cmotiv = #{cmotiv,jdbcType=INTEGER},
+      flghall = #{flghall,jdbcType=INTEGER},
+      flgsexo = #{flgsexo,jdbcType=INTEGER},
+      cmed = #{cmed,jdbcType=INTEGER},
+      lat = #{lat,jdbcType=REAL},
+      lng = #{lng,jdbcType=REAL},
+      fecha = #{fecha,jdbcType=TIMESTAMP},
+      freg = #{freg,jdbcType=TIMESTAMP},
+      unidad = #{unidad,jdbcType=VARCHAR},
+      caso = #{caso,jdbcType=VARCHAR},
+      subcaso = #{subcaso,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      zona = #{zona,jdbcType=VARCHAR},
+      subzona = #{subzona,jdbcType=VARCHAR},
+      severidad = #{severidad,jdbcType=VARCHAR},
+      estado = #{estado,jdbcType=VARCHAR},
+      subestado = #{subestado,jdbcType=VARCHAR},
+      modalidad = #{modalidad,jdbcType=VARCHAR},
+      via = #{via,jdbcType=VARCHAR},
+      ddia = #{ddia,jdbcType=VARCHAR},
+      dmes = #{dmes,jdbcType=VARCHAR},
+      medio = #{medio,jdbcType=VARCHAR}
+    where id_estad = #{idEstad,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.miraflores.mobile.historico.dao.HistoricoIntervinienteMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.miraflores.mobile.domain.historico.HistoricoInterviniente">
+    <id column="id_hist_interv" jdbcType="INTEGER" property="idHistInterv" />
+    <result column="id_hist" jdbcType="INTEGER" property="idHist" />
+    <result column="cod_interv" jdbcType="INTEGER" property="codInterv" />
+    <result column="id_incidencia" jdbcType="INTEGER" property="idIncidencia" />
+    <result column="cod_tpo_interv" jdbcType="INTEGER" property="codTpoInterv" />
+    <result column="cod_tpo_puesto" jdbcType="INTEGER" property="codTpoPuesto" />
+    <result column="desc_tpo_interv" jdbcType="VARCHAR" property="descTpoInterv" />
+    <result column="desc_tpo_puesto" jdbcType="VARCHAR" property="descTpoPuesto" />
+    <result column="nomb_interv" jdbcType="VARCHAR" property="nombInterv" />
+    <result column="apoyo_policial" jdbcType="VARCHAR" property="apoyoPolicial" />
+    <result column="est_reg" jdbcType="VARCHAR" property="estReg" />
+    <result column="info_interv" jdbcType="VARCHAR" property="infoInterv" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id_hist_interv, id_hist, cod_interv, id_incidencia, cod_tpo_interv, cod_tpo_puesto, 
+    desc_tpo_interv, desc_tpo_puesto, nomb_interv, apoyo_policial, est_reg, info_interv
+  </sql>
+  <select id="selectByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIntervinienteCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from histomapa.hist_interviniente
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from histomapa.hist_interviniente
+    where id_hist_interv = #{idHistInterv,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from histomapa.hist_interviniente
+    where id_hist_interv = #{idHistInterv,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIntervinienteCriteria">
+    delete from histomapa.hist_interviniente
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoInterviniente">
+    insert into histomapa.hist_interviniente (id_hist_interv, id_hist, cod_interv, 
+      id_incidencia, cod_tpo_interv, cod_tpo_puesto, 
+      desc_tpo_interv, desc_tpo_puesto, nomb_interv, 
+      apoyo_policial, est_reg, info_interv
+      )
+    values (#{idHistInterv,jdbcType=INTEGER}, #{idHist,jdbcType=INTEGER}, #{codInterv,jdbcType=INTEGER}, 
+      #{idIncidencia,jdbcType=INTEGER}, #{codTpoInterv,jdbcType=INTEGER}, #{codTpoPuesto,jdbcType=INTEGER}, 
+      #{descTpoInterv,jdbcType=VARCHAR}, #{descTpoPuesto,jdbcType=VARCHAR}, #{nombInterv,jdbcType=VARCHAR}, 
+      #{apoyoPolicial,jdbcType=VARCHAR}, #{estReg,jdbcType=VARCHAR}, #{infoInterv,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoInterviniente">
+    insert into histomapa.hist_interviniente
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idHistInterv != null">
+        id_hist_interv,
+      </if>
+      <if test="idHist != null">
+        id_hist,
+      </if>
+      <if test="codInterv != null">
+        cod_interv,
+      </if>
+      <if test="idIncidencia != null">
+        id_incidencia,
+      </if>
+      <if test="codTpoInterv != null">
+        cod_tpo_interv,
+      </if>
+      <if test="codTpoPuesto != null">
+        cod_tpo_puesto,
+      </if>
+      <if test="descTpoInterv != null">
+        desc_tpo_interv,
+      </if>
+      <if test="descTpoPuesto != null">
+        desc_tpo_puesto,
+      </if>
+      <if test="nombInterv != null">
+        nomb_interv,
+      </if>
+      <if test="apoyoPolicial != null">
+        apoyo_policial,
+      </if>
+      <if test="estReg != null">
+        est_reg,
+      </if>
+      <if test="infoInterv != null">
+        info_interv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idHistInterv != null">
+        #{idHistInterv,jdbcType=INTEGER},
+      </if>
+      <if test="idHist != null">
+        #{idHist,jdbcType=INTEGER},
+      </if>
+      <if test="codInterv != null">
+        #{codInterv,jdbcType=INTEGER},
+      </if>
+      <if test="idIncidencia != null">
+        #{idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="codTpoInterv != null">
+        #{codTpoInterv,jdbcType=INTEGER},
+      </if>
+      <if test="codTpoPuesto != null">
+        #{codTpoPuesto,jdbcType=INTEGER},
+      </if>
+      <if test="descTpoInterv != null">
+        #{descTpoInterv,jdbcType=VARCHAR},
+      </if>
+      <if test="descTpoPuesto != null">
+        #{descTpoPuesto,jdbcType=VARCHAR},
+      </if>
+      <if test="nombInterv != null">
+        #{nombInterv,jdbcType=VARCHAR},
+      </if>
+      <if test="apoyoPolicial != null">
+        #{apoyoPolicial,jdbcType=VARCHAR},
+      </if>
+      <if test="estReg != null">
+        #{estReg,jdbcType=VARCHAR},
+      </if>
+      <if test="infoInterv != null">
+        #{infoInterv,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoIntervinienteCriteria" resultType="java.lang.Long">
+    select count(*) from histomapa.hist_interviniente
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update histomapa.hist_interviniente
+    <set>
+      <if test="record.idHistInterv != null">
+        id_hist_interv = #{record.idHistInterv,jdbcType=INTEGER},
+      </if>
+      <if test="record.idHist != null">
+        id_hist = #{record.idHist,jdbcType=INTEGER},
+      </if>
+      <if test="record.codInterv != null">
+        cod_interv = #{record.codInterv,jdbcType=INTEGER},
+      </if>
+      <if test="record.idIncidencia != null">
+        id_incidencia = #{record.idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="record.codTpoInterv != null">
+        cod_tpo_interv = #{record.codTpoInterv,jdbcType=INTEGER},
+      </if>
+      <if test="record.codTpoPuesto != null">
+        cod_tpo_puesto = #{record.codTpoPuesto,jdbcType=INTEGER},
+      </if>
+      <if test="record.descTpoInterv != null">
+        desc_tpo_interv = #{record.descTpoInterv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descTpoPuesto != null">
+        desc_tpo_puesto = #{record.descTpoPuesto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nombInterv != null">
+        nomb_interv = #{record.nombInterv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apoyoPolicial != null">
+        apoyo_policial = #{record.apoyoPolicial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.estReg != null">
+        est_reg = #{record.estReg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoInterv != null">
+        info_interv = #{record.infoInterv,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update histomapa.hist_interviniente
+    set id_hist_interv = #{record.idHistInterv,jdbcType=INTEGER},
+      id_hist = #{record.idHist,jdbcType=INTEGER},
+      cod_interv = #{record.codInterv,jdbcType=INTEGER},
+      id_incidencia = #{record.idIncidencia,jdbcType=INTEGER},
+      cod_tpo_interv = #{record.codTpoInterv,jdbcType=INTEGER},
+      cod_tpo_puesto = #{record.codTpoPuesto,jdbcType=INTEGER},
+      desc_tpo_interv = #{record.descTpoInterv,jdbcType=VARCHAR},
+      desc_tpo_puesto = #{record.descTpoPuesto,jdbcType=VARCHAR},
+      nomb_interv = #{record.nombInterv,jdbcType=VARCHAR},
+      apoyo_policial = #{record.apoyoPolicial,jdbcType=VARCHAR},
+      est_reg = #{record.estReg,jdbcType=VARCHAR},
+      info_interv = #{record.infoInterv,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoInterviniente">
+    update histomapa.hist_interviniente
+    <set>
+      <if test="idHist != null">
+        id_hist = #{idHist,jdbcType=INTEGER},
+      </if>
+      <if test="codInterv != null">
+        cod_interv = #{codInterv,jdbcType=INTEGER},
+      </if>
+      <if test="idIncidencia != null">
+        id_incidencia = #{idIncidencia,jdbcType=INTEGER},
+      </if>
+      <if test="codTpoInterv != null">
+        cod_tpo_interv = #{codTpoInterv,jdbcType=INTEGER},
+      </if>
+      <if test="codTpoPuesto != null">
+        cod_tpo_puesto = #{codTpoPuesto,jdbcType=INTEGER},
+      </if>
+      <if test="descTpoInterv != null">
+        desc_tpo_interv = #{descTpoInterv,jdbcType=VARCHAR},
+      </if>
+      <if test="descTpoPuesto != null">
+        desc_tpo_puesto = #{descTpoPuesto,jdbcType=VARCHAR},
+      </if>
+      <if test="nombInterv != null">
+        nomb_interv = #{nombInterv,jdbcType=VARCHAR},
+      </if>
+      <if test="apoyoPolicial != null">
+        apoyo_policial = #{apoyoPolicial,jdbcType=VARCHAR},
+      </if>
+      <if test="estReg != null">
+        est_reg = #{estReg,jdbcType=VARCHAR},
+      </if>
+      <if test="infoInterv != null">
+        info_interv = #{infoInterv,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_hist_interv = #{idHistInterv,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.miraflores.mobile.domain.historico.HistoricoInterviniente">
+    update histomapa.hist_interviniente
+    set id_hist = #{idHist,jdbcType=INTEGER},
+      cod_interv = #{codInterv,jdbcType=INTEGER},
+      id_incidencia = #{idIncidencia,jdbcType=INTEGER},
+      cod_tpo_interv = #{codTpoInterv,jdbcType=INTEGER},
+      cod_tpo_puesto = #{codTpoPuesto,jdbcType=INTEGER},
+      desc_tpo_interv = #{descTpoInterv,jdbcType=VARCHAR},
+      desc_tpo_puesto = #{descTpoPuesto,jdbcType=VARCHAR},
+      nomb_interv = #{nombInterv,jdbcType=VARCHAR},
+      apoyo_policial = #{apoyoPolicial,jdbcType=VARCHAR},
+      est_reg = #{estReg,jdbcType=VARCHAR},
+      info_interv = #{infoInterv,jdbcType=VARCHAR}
+    where id_hist_interv = #{idHistInterv,jdbcType=INTEGER}
+  </update>
+</mapper>

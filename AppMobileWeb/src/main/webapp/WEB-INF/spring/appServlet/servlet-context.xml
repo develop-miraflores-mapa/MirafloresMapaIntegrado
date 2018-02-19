@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 				http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx 					http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop 					http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc 					http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+		http://www.springframework.org/schema/task 					http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="pe.gob.miraflores.mobile.**" />
+
+   <task:annotation-driven />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000" />
+	</bean>
+
+	<mvc:resources mapping="/bootbox/**" location="/librerias/bootbox/" />
+	
+	<mvc:resources mapping="/bootstrap/**" location="/librerias/bootstrap/" />
+
+	<mvc:resources mapping="/css/**" location="/librerias/css/" />
+
+	<mvc:resources mapping="/jquery/**" location="/librerias/jquery/" />
+
+	<mvc:resources mapping="/ext/**" location="/librerias/ext6/" />
+
+	<mvc:resources mapping="/common/**" location="/librerias/common/" />
+	
+	<mvc:resources mapping="/chart/**" location="/librerias/Chart/" />
+	
+	<!-- <mvc:resources mapping="/chartjs/**" location="/librerias/chartjs/" /> -->
+	
+	<!-- <mvc:resources mapping="/ext5/**" location="/librerias/ext5/" /> -->
+	
+	<!-- <mvc:resources mapping="/highcharts/**" location="/librerias/highcharts/Chart/ux/" /> -->
+
+	<mvc:resources mapping="/js/**" location="/librerias/js/" />
+
+	<mvc:resources mapping="/images/**" location="/librerias/images/" />
+
+</beans>

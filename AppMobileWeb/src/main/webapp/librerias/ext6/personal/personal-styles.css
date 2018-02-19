@@ -1,0 +1,35 @@
+.icon-user {
+    background-image: url('themes/images/user.png') !important;
+}
+
+.icon-user-add {
+    background-image: url('themes/images/user_add.gif') !important;
+}
+
+.icon-save {
+    background-image: url('themes/images/save.gif') !important;
+}
+
+.icon-reset {
+    background-image: url('themes/images/stop.png') !important;
+}
+
+.icon-grid {
+    background-image: url('themes/images/grid.png') !important;
+}
+
+.icon-add {
+    background-image: url('themes/images/add.png') !important;
+}
+
+.icon-delete {
+    background-image: url('themes/images/delete.png') !important;
+}
+
+.x-form-text-default {
+  padding: 3px 6px 3px 6px !important;
+}
+
+.x-form-text {
+    display: inherit;
+}

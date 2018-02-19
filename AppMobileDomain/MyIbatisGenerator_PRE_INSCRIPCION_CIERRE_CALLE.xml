@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry  location="C:\\Users\\jose.sanchez\\.m2\\repository\\net\\sf\\jt400\\jt400\\6.7\\jt400-6.7.jar"/>
+  
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="hierarchical"  >
+  <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
+      <property name="searchString" value="Example$"/>
+      <property name="replaceString" value="Criteria"/>
+    </plugin>
+   <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+   <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> 
+    
+  <!-- No generamos los comentarios -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="false"/>
+    </commentGenerator>
+      <!--  Parámetros de conexión a la bd -->
+    
+    <jdbcConnection driverClass="com.ibm.as400.access.AS400JDBCDriver" connectionURL="jdbc:as400://10.0.1.10/SMM"
+        userId="USERSMM" password="MUNISMM11">
+    </jdbcConnection>
+    <javaModelGenerator targetPackage="pe.gob.miraflores.mobile.domain.mapaincidencias" targetProject="AppMobileDomain\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaModelGenerator>  
+     <sqlMapGenerator targetPackage="pe.gob.miraflores.mobile.dao.mapaincidencias.sqlmap"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </sqlMapGenerator>  
+     <!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->  
+    <javaClientGenerator type="XMLMAPPER" targetPackage="pe.gob.miraflores.mobile.dao.mapaincidencias"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaClientGenerator>  
+ 	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
+   	        
+   <table  tableName="PRE_INSCRIPCION_CIERRE_CALLE" domainObjectName="PreInscripcionCierreCalle"  modelType="flat" >
+
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    
+    <!-- 
+    <table  tableName="GEO_MAP_INICIDENCIA_LINEA" domainObjectName="GeometriaLinea"  modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  -->
+       
+     
+  </context>
+</generatorConfiguration>

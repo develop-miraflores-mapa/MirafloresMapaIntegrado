@@ -1,0 +1,1 @@
+var PATH_PROYECTO_BASE = '/mobileApps/';

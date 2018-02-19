@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry  location="D:\\lib\\postgresql-9.0-801.jdbc4.jar"/>
+  
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="hierarchical"  >
+  <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
+      <property name="searchString" value="Example$"/>
+      <property name="replaceString" value="Criteria"/>
+    </plugin>
+   <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+   <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> 
+    
+  <!-- No generamos los comentarios -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="false"/>
+    </commentGenerator>
+      <!--  Parámetros de conexión a la bd -->
+    
+    <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://10.0.1.74:5432/catastro"
+        userId="consulta" password="consult@">
+    </jdbcConnection>
+    <javaModelGenerator targetPackage="pe.gob.miraflores.mobile.domain.catastro" targetProject="AppMobileDomain\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaModelGenerator>  
+     <sqlMapGenerator targetPackage="pe.gob.miraflores.mobile.catastro.dao.sqlmap"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </sqlMapGenerator>  
+     <!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->  
+    <javaClientGenerator type="XMLMAPPER" targetPackage="pe.gob.miraflores.mobile.catastro.dao"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaClientGenerator>  
+ 	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
+       
+      <table schema="catastro"  tableName="zonas" domainObjectName="ZonaCatastro"  modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+     </table>  
+       
+     
+  </context>
+</generatorConfiguration>

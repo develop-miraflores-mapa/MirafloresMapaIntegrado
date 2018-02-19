@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+			<setting name="cacheEnabled" value="true"/>
+                 <setting name="localCacheScope" value="SESSION"/>
+	</settings>
+	
+	<typeAliases>
+		 	<typeAlias type="pe.gob.miraflores.mobile.domain.historico.HistoricoIncidencia" alias="HistoricoIncidencia" /> 
+		 	<typeAlias type="pe.gob.miraflores.mobile.domain.historico.HistoricoInterviniente" alias="HistoricoInterviniente" />
+		 	<typeAlias type="pe.gob.miraflores.mobile.domain.historico.HistoricoInvolucrado" alias="HistoricoInvolucrado" />
+		 	<typeAlias type="pe.gob.miraflores.mobile.domain.historico.HistoricoVehiculo" alias="HistoricoVehiculo" />
+		 	<typeAlias type="pe.gob.miraflores.mobile.domain.historico.EstadisticaBase" alias="EstadisticaBase" /> 
+	</typeAliases>
+
+	<mappers>
+	        <mapper resource="pe/gob/miraflores/mobile/historico/dao/sqlmap/HistoricoIncidenciaMapper.xml" /> 
+			<mapper resource="pe/gob/miraflores/mobile/historico/dao/sqlmap/HistoricoIntervinienteMapper.xml" />
+			<mapper resource="pe/gob/miraflores/mobile/historico/dao/sqlmap/HistoricoInvolucradoMapper.xml" />
+			<mapper resource="pe/gob/miraflores/mobile/historico/dao/sqlmap/HistoricoVehiculoMapper.xml" />
+			<mapper resource="pe/gob/miraflores/mobile/historico/dao/sqlmap/EstadisticaBaseMapper.xml" /> 
+	</mappers>
+	
+</configuration>
+
+
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry  location="E:\\Installers\\sqlSquirre\\lib\\postgresql-9.1-901.jdbc4.jar"/>
+  
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="hierarchical"  >
+  <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
+      <property name="searchString" value="Example$"/>
+      <property name="replaceString" value="Criteria"/>
+    </plugin>
+   <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+   <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> 
+    
+  <!-- No generamos los comentarios -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="false"/>
+    </commentGenerator>
+      <!--  Parámetros de conexión a la bd -->
+    
+    <!-- <jdbcConnection driverClass="com.ibm.as400.access.AS400JDBCDriver" connectionURL="jdbc:as400://10.0.1.118/SMM"
+        userId="USERSMM" password="MUNISMM11">
+    </jdbcConnection> -->
+    
+    <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://10.0.1.147:5432/postgres"
+        userId="postgres" password="P0stgr3s...UBU...des$$">
+    </jdbcConnection>
+    
+    
+    <javaModelGenerator targetPackage="pe.gob.miraflores.mobile.domain.seguridad" targetProject="AppMobileDomain\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaModelGenerator>  
+     <sqlMapGenerator targetPackage="pe.gob.miraflores.mobile.dao.seguridad.sqlmap"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </sqlMapGenerator>  
+     <!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->  
+    <javaClientGenerator type="XMLMAPPER" targetPackage="pe.gob.miraflores.mobile.dao.seguridad"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaClientGenerator>  
+ 	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
+   	        
+    <table  tableName="geo_map_usuario" domainObjectName="XXXXXXXX" schema='mapa' modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    <!-- 
+    <table  tableName="geo_map_opcion" domainObjectName="Opcion" schema='mapa' modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    
+    <table  tableName="geo_map_usuario_opcion" domainObjectName="UsuarioOpcion" schema='mapa' modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    --> 
+    
+    <table  tableName="geo_map_rol_hist" domainObjectName="RolHistorico" schema='mapa' modelType="flat" >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+     
+  </context>
+</generatorConfiguration>
+

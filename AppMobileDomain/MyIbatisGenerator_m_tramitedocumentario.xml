@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry  location="E:\\Installers\\sqlSquirre\\lib\\ojdbc14.jar"/>
+  
+  <context id="context1" targetRuntime="MyBatis3" defaultModelType="hierarchical"  >
+  <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin" >
+      <property name="searchString" value="Example$"/>
+      <property name="replaceString" value="Criteria"/>
+    </plugin>
+   <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+   <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" /> 
+    
+  <!-- No generamos los comentarios -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="false"/>
+    </commentGenerator>
+      <!--  Parámetros de conexión a la bd -->
+    
+    <!-- <jdbcConnection driverClass="com.ibm.as400.access.AS400JDBCDriver" connectionURL="jdbc:as400://10.0.1.118/SMM"
+        userId="USERSMM" password="MUNISMM11">
+    </jdbcConnection> -->
+    
+    <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@10.0.1.116:1521:orcl"
+        userId="DESARROLLO_DB2" password="123oracle">
+    </jdbcConnection>
+    
+    <javaModelGenerator targetPackage="pe.gob.miraflores.mobile.domain.tramitedocumentario" targetProject="AppMobileDomain\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </javaModelGenerator>  
+     <sqlMapGenerator targetPackage="pe.gob.miraflores.mobile.dao.tramitedocumentario.sqlmap"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    </sqlMapGenerator>  
+     <!-- También podríamos indicar el tipo ANNOTATEDMAPPER -->  
+    <javaClientGenerator type="XMLMAPPER" targetPackage="pe.gob.miraflores.mobile.dao.tramitedocumentario"  targetProject="AppMobileDao\src\main\java">  
+      <property name="enableSubPackages" value="false" />  
+    
+    </javaClientGenerator>  
+ 	<!-- Generamos el código fuente de todas las tablas evitando la generación varios métodos -->
+  	
+  	<!--    
+	<table tableName='geo_map_auditoria' domainObjectName='XXXXXXXX' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_caso' domainObjectName='MapaCaso' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    <table tableName='cambiasta_map' domainObjectName='GeoInfoCambista' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+	<table tableName='geo_map_inicidencia_linea' domainObjectName='GeometriaLinea' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+	<table tableName='geo_map_maestro_tipo' domainObjectName='MapaMaestroTipo' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+	<table tableName='geo_map_generico' domainObjectName='MapaIncidenciaGenerico' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+	<table tableName='geo_map_inicidencia_schedule' domainObjectName='MapaIncidenciaSchedule' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+  	<table tableName='geomgeometria' domainObjectName='MapaIncidenciasGeometria' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+	<table tableName='geo_incidencia_map' domainObjectName='MapaIncidenciasRegistro' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    <table tableName='pre_inscripcion_cierre_calle' domainObjectName='PreInscripcionCierreCalle' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>    
+	<table tableName='geo_map_subcaso' domainObjectName='MapaSubcaso' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+    <table tableName='geo_map_unidad' domainObjectName='MapaUnidad' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>  
+	<table tableName='geo_map_vehiculo' domainObjectName='MapaVehiculo' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_incidencia' domainObjectName='XXXXXXXX' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_interviniente' domainObjectName='MapaInterviniente' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_involucrado' domainObjectName='MapaInvolucrado' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_alerta' domainObjectName='MapaIncidenciaAlerta' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>   
+    <table tableName='geo_map_vehiculo' domainObjectName='MapaVehiculo' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_incidencia' domainObjectName='MapaIncidenciaReg2' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_bitacora' domainObjectName='MapaIncidenciaBitacora' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='tipificacion' domainObjectName='Tipificacion' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='reach_feed' domainObjectName='ReachFeed' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_map_estadistica' domainObjectName='MapaEstadistica' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_info_pos' domainObjectName='GeoInfoPos' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    <table tableName='geo_sereno_ruta' domainObjectName='SerenoRuta' schema='mapa' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+    -->
+    <table tableName='STRTINTERNAMIENTOVEHICULAR' domainObjectName='InternamientoVehicular' modelType='flat' >
+  	  <property name="useActualColumnNames" value="false"/>
+      <property name="constructorBased" value="false"/>
+    </table>
+  </context>
+</generatorConfiguration>
